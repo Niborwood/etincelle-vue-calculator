@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import InputGroup from "./components/InputGroup.vue";
+
 const handleSubmit = () => {
   console.log("submit");
 };
@@ -11,8 +13,9 @@ const handleSubmit = () => {
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
     </header>
-    <main>
+    <main class="w-full p-8">
       <form @submit.prevent="handleSubmit">
+        <InputGroup items="lessonItems" />
         <button type="submit">Envoyer</button>
       </form>
     </main>
