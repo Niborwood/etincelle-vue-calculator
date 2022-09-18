@@ -10,7 +10,7 @@ const store = useAppStore();
     Quels sont les cours choisis par l'élève ?
   </div>
   <div
-    class="flex flex-col flex-1 gap-4 transition-all md:items-center md:flex-row md:flex-wrap"
+    class="flex flex-col flex-1 gap-4 md:items-center md:flex-row md:flex-wrap"
   >
     <div
       v-for="input in store.classesItems"

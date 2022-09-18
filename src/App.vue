@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAppStore } from "./stores/AppStore";
 import InputGroup from "./components/InputGroup.vue";
+import SummaryForm from "./components/summary-form.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
 
@@ -21,7 +22,7 @@ const handleSubmit = () => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 min-w-screen font-quicksand text-stone-700 bg-"
+    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 min-w-screen font-quicksand text-stone-700 bg-gradient-to-tr from-stone-100/70 to-stone-100"
   >
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
@@ -70,6 +71,11 @@ const handleSubmit = () => {
           <!-- Classes -->
           <div v-else-if="store.formStep === FormStep.Classes">
             <InputGroup />
+          </div>
+
+          <!-- Summary -->
+          <div v-else-if="store.formStep === FormStep.Summary">
+            <SummaryForm />
           </div>
         </Transition>
 
