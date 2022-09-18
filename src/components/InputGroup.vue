@@ -33,11 +33,7 @@ const lessonItems = ref([
     price: 270,
   },
 ]);
-const checkedLessons = ref([]);
-console.log(
-  "🚀 ~ file: InputGroup.vue ~ line 37 ~ checkedLessons",
-  checkedLessons.value
-);
+const checkedLessons = ref<string[]>([]);
 </script>
 
 <template>
@@ -46,7 +42,8 @@ console.log(
     <div
       v-for="input in lessonItems"
       :key="input.id"
-      class="p-8 border-2 rounded-lg cursor-pointer"
+      class="border-2 rounded-lg cursor-pointer"
+      :class="checkedLessons.includes(input.id) && 'border-orange-300'"
     >
       <input
         type="checkbox"
@@ -55,7 +52,9 @@ console.log(
         :value="input.id"
         v-model="checkedLessons"
       />
-      <label class="cursor-pointer" :for="input.id">{{ input.label }}</label>
+      <label class="block p-8 cursor-pointer select-none" :for="input.id">{{
+        input.label
+      }}</label>
     </div>
   </div>
 </template>
