@@ -38,7 +38,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Vendredi",
       hours: "18h30 - 19h45",
       room: "Salle 5",
-      price: 270,
+      price: 220,
     },
     {
       id: "avances",
@@ -47,7 +47,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Mardi",
       hours: "20h00 - 21h30",
       room: "Salle 5",
-      price: 270,
+      price: 250,
     },
     {
       id: "concours-13-18",
@@ -65,11 +65,14 @@ export const useAppStore = defineStore("app", () => {
       hours: "13h45 - 15h15",
       day: "Samedi",
       room: "Salle 3",
-      price: 270,
+      price: 250,
     },
   ]);
   const checkedClasses = ref<string[]>([]);
-  const formStep = ref<FormStep>(FormStep.Initial);
 
-  return { classesItems, checkedClasses, formStep };
+  // Form State
+  const formStep = ref<FormStep>(FormStep.Initial);
+  const slideDirection = ref<"prev" | "next">("next");
+
+  return { classesItems, checkedClasses, formStep, slideDirection };
 });

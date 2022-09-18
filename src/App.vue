@@ -32,21 +32,46 @@ const handleSubmit = () => {
         class="flex flex-col items-start justify-start gap-8"
       >
         <!-- Initial -->
-        <div v-if="store.formStep === FormStep.Initial">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel debitis,
-          quidem explicabo quod pariatur consequatur ex porro sapiente qui
-          nihil, autem dolorum nemo aut unde in sed consequuntur corporis
-          aperiam iusto asperiores aliquam accusantium deleniti? Eaque minus
-          quasi odit cumque consequuntur eligendi totam cupiditate, temporibus
-          doloribus id? Voluptatibus corrupti explicabo tenetur animi vero
-          debitis fugit totam, quis velit assumenda excepturi nemo repudiandae
-          illum, quo illo, magnam molestiae placeat vel delectus sit culpa.
-          Voluptatem iure nesciunt, dolores illo autem labore distinctio dicta,
-          nostrum sapiente fuga at maiores eligendi a nisi earum?
-        </div>
 
-        <!-- Classes -->
-        <InputGroup v-if="store.formStep === FormStep.Classes" />
+        <Transition
+          appear
+          enter-active-class="duration-700 ease-out"
+          :enter-from-class="
+            store.slideDirection === 'next'
+              ? 'transform opacity-0 translate-x-full'
+              : 'transform opacity-0 -translate-x-full'
+          "
+          enter-to-class="translate-x-0 opacity-100"
+          :leave-active-class="
+            store.slideDirection === 'next'
+              ? 'duration-700 ease-in -translate-x-full'
+              : 'duration-700 ease-in translate-x-full'
+          "
+          leave-from-class="opacity-100"
+          leave-to-class="transform opacity-0"
+          mode="out-in"
+        >
+          <div v-if="store.formStep === FormStep.Initial">
+            <div>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
+              debitis, quidem explicabo quod pariatur consequatur ex porro
+              sapiente qui nihil, autem dolorum nemo aut unde in sed
+              consequuntur corporis aperiam iusto asperiores aliquam accusantium
+              deleniti? Eaque minus quasi odit cumque consequuntur eligendi
+              totam cupiditate, temporibus doloribus id? Voluptatibus corrupti
+              explicabo tenetur animi vero debitis fugit totam, quis velit
+              assumenda excepturi nemo repudiandae illum, quo illo, magnam
+              molestiae placeat vel delectus sit culpa. Voluptatem iure
+              nesciunt, dolores illo autem labore distinctio dicta, nostrum
+              sapiente fuga at maiores eligendi a nisi earum?
+            </div>
+          </div>
+
+          <!-- Classes -->
+          <div v-else-if="store.formStep === FormStep.Classes">
+            <InputGroup />
+          </div>
+        </Transition>
 
         <!-- Control buttons -->
         <div class="flex flex-row justify-between w-full">

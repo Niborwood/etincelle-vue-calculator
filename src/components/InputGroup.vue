@@ -6,16 +6,16 @@ const store = useAppStore();
 </script>
 
 <template>
-  <div class="text-lg text-bold">
+  <div class="mb-2 text-lg text-bold">
     Quels sont les cours choisis par l'élève ?
   </div>
   <div
-    class="flex flex-col flex-1 gap-4 md:items-center md:flex-row md:flex-wrap"
+    class="flex flex-col flex-1 gap-4 transition-all md:items-center md:flex-row md:flex-wrap"
   >
     <div
       v-for="input in store.classesItems"
       :key="input.id"
-      class="flex flex-row-reverse p-2 transition-all border-2 rounded-lg cursor-pointer hover:shadow-md md:basis-64 md:grow-0"
+      class="flex flex-row-reverse p-2 transition-all border-2 cursor-pointer rounded-xl hover:shadow-md md:basis-64 md:grow-0"
       :class="
         store.checkedClasses.includes(input.id) &&
         'border-orange-300 bg-gradient-to-tr from-orange-200/90 to-orange-200'
