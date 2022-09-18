@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAppStore } from "./stores/AppStore";
-import InputGroup from "./components/InputGroup.vue";
+import ClassesForm from "./components/InputGroup.vue";
 import SummaryForm from "./components/summary-form.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
@@ -34,7 +34,7 @@ const handleSubmit = () => {
       >
         <!-- Initial -->
 
-        <Transition
+        <transition
           appear
           enter-active-class="duration-700 ease-out"
           :enter-from-class="
@@ -52,6 +52,7 @@ const handleSubmit = () => {
           leave-to-class="transform opacity-0"
           mode="out-in"
         >
+          <!-- Initial -->
           <div v-if="store.formStep === FormStep.Initial">
             <div>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
@@ -70,14 +71,14 @@ const handleSubmit = () => {
 
           <!-- Classes -->
           <div v-else-if="store.formStep === FormStep.Classes">
-            <InputGroup />
+            <classes-form />
           </div>
 
           <!-- Summary -->
           <div v-else-if="store.formStep === FormStep.Summary">
-            <SummaryForm />
+            <summary-form />
           </div>
-        </Transition>
+        </transition>
 
         <!-- Control buttons -->
         <div class="flex flex-row justify-between w-full">
