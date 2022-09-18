@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { useAppStore } from "./stores/AppStore";
 import InputGroup from "./components/InputGroup.vue";
+import { FormStep } from "./definitions/app.d";
+import { ArrowLeft, ArrowRight } from "lucide-vue-next";
+
+const store = useAppStore();
+
+const handleNextStep = () => {
+  store.formStep++;
+};
+
+const handlePrevStep = () => {
+  store.formStep--;
+};
 
 const handleSubmit = () => {
   console.log("submit");
@@ -8,7 +21,7 @@ const handleSubmit = () => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 min-w-screen font-quicksand text-stone-700"
+    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 min-w-screen font-quicksand text-stone-700 bg-"
   >
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
@@ -16,10 +29,41 @@ const handleSubmit = () => {
     <main class="md:p-8 md:w-2/3">
       <form
         @submit.prevent="handleSubmit"
-        class="flex flex-col items-start justify-start gap-4"
+        class="flex flex-col items-start justify-start gap-8"
       >
-        <InputGroup />
-        <button type="submit">Suivant</button>
+        <!-- Initial -->
+        <div v-if="store.formStep === FormStep.Initial">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel debitis,
+          quidem explicabo quod pariatur consequatur ex porro sapiente qui
+          nihil, autem dolorum nemo aut unde in sed consequuntur corporis
+          aperiam iusto asperiores aliquam accusantium deleniti? Eaque minus
+          quasi odit cumque consequuntur eligendi totam cupiditate, temporibus
+          doloribus id? Voluptatibus corrupti explicabo tenetur animi vero
+          debitis fugit totam, quis velit assumenda excepturi nemo repudiandae
+          illum, quo illo, magnam molestiae placeat vel delectus sit culpa.
+          Voluptatem iure nesciunt, dolores illo autem labore distinctio dicta,
+          nostrum sapiente fuga at maiores eligendi a nisi earum?
+        </div>
+
+        <!-- Classes -->
+        <InputGroup v-if="store.formStep === FormStep.Classes" />
+
+        <!-- Control buttons -->
+        <div class="flex flex-row justify-between w-full">
+          <button
+            class="flex flex-row-reverse items-center gap-1 transition-colors hover:text-orange-500"
+            @click="handlePrevStep"
+            v-if="store.formStep > 0"
+          >
+            Précédent <ArrowLeft size="14" />
+          </button>
+          <button
+            class="flex flex-row items-center gap-1 transition-colors hover:text-orange-500"
+            @click="handleNextStep"
+          >
+            Suivant <ArrowRight size="14" />
+          </button>
+        </div>
       </form>
     </main>
   </div>
