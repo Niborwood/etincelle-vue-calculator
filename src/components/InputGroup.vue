@@ -6,9 +6,10 @@ const store = useAppStore();
 </script>
 
 <template>
-  <div class="mb-2 text-lg text-bold">
+  <h2 class="mb-4 text-2xl italic font-bold text-orange-800">
     Quels sont les cours choisis par l'élève ?
-  </div>
+  </h2>
+
   <div
     class="flex flex-col flex-1 gap-4 md:items-center md:flex-row md:flex-wrap"
   >

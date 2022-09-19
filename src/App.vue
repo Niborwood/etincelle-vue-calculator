@@ -6,18 +6,6 @@ import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
 
 const store = useAppStore();
-
-const handleNextStep = () => {
-  store.formStep++;
-};
-
-const handlePrevStep = () => {
-  store.formStep--;
-};
-
-const handleSubmit = () => {
-  console.log("submit");
-};
 </script>
 
 <template>
@@ -27,15 +15,14 @@ const handleSubmit = () => {
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
     </header>
-    <main class="md:p-8 md:w-2/3">
+    <main class="md:p-8 md:w-1/2">
       <form
-        @submit.prevent="handleSubmit"
+        @submit.prevent="store.handleSubmit"
         class="flex flex-col items-start justify-start gap-8"
       >
         <!-- Initial -->
 
         <transition
-          appear
           enter-active-class="duration-700 ease-out"
           :enter-from-class="
             store.slideDirection === 'next'
@@ -54,7 +41,7 @@ const handleSubmit = () => {
         >
           <!-- Initial -->
           <div v-if="store.formStep === FormStep.Initial">
-            <div>
+            <div class="text-xl leading-relaxed">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
               debitis, quidem explicabo quod pariatur consequatur ex porro
               sapiente qui nihil, autem dolorum nemo aut unde in sed
@@ -81,21 +68,26 @@ const handleSubmit = () => {
         </transition>
 
         <!-- Control buttons -->
-        <div class="flex flex-row justify-between w-full">
-          <button
-            class="flex flex-row-reverse items-center gap-1 transition-colors hover:text-orange-500"
-            @click="handlePrevStep"
-            v-if="store.formStep > 0"
+        <transition mode="out-in">
+          <div
+            v-if="!store.isAnimating || store.formStep === FormStep.Initial"
+            class="flex flex-row justify-between w-full"
           >
-            Précédent <ArrowLeft size="14" />
-          </button>
-          <button
-            class="flex flex-row items-center gap-1 transition-colors hover:text-orange-500"
-            @click="handleNextStep"
-          >
-            Suivant <ArrowRight size="14" />
-          </button>
-        </div>
+            <button
+              class="flex flex-row-reverse items-center gap-1 p-4 font-bold transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              @click="() => store.handleFormStep('prev')"
+              v-if="store.formStep > 0"
+            >
+              Précédent <ArrowLeft size="14" />
+            </button>
+            <button
+              class="flex flex-row items-center gap-1 p-4 font-bold transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              @click="() => store.handleFormStep('next')"
+            >
+              Suivant <ArrowRight size="14" />
+            </button>
+          </div>
+        </transition>
       </form>
     </main>
   </div>

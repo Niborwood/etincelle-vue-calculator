@@ -73,6 +73,34 @@ export const useAppStore = defineStore("app", () => {
   // Form State
   const formStep = ref<FormStep>(FormStep.Initial);
   const slideDirection = ref<"prev" | "next">("next");
+  const isAnimating = ref(false);
 
-  return { classesItems, checkedClasses, formStep, slideDirection };
+  const handleFormStep = (step: "next" | "prev") => {
+    isAnimating.value = true;
+
+    if (step === "next") {
+      slideDirection.value = "next";
+      formStep.value++;
+    } else {
+      slideDirection.value = "prev";
+      formStep.value--;
+    }
+
+    isAnimating.value = false;
+  };
+
+  // Validation
+  const handleSubmit = () => {
+    console.log("submit");
+  };
+
+  return {
+    classesItems,
+    checkedClasses,
+    formStep,
+    slideDirection,
+    handleFormStep,
+    isAnimating,
+    handleSubmit,
+  };
 });
