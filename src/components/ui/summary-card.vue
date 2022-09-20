@@ -12,7 +12,7 @@ const props = defineProps<SummaryCardProps>();
 </script>
 
 <template>
-  <div class="flex flex-col justify-between flex-1 p-8 bg-stone-300 rounded-xl">
+  <div class="flex flex-col justify-between p-8 border-2 rounded-xl">
     <h3>{{ props.title }}</h3>
     <div class="text-4xl font-bold">
       {{ props.number }}

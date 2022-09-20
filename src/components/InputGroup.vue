@@ -10,13 +10,11 @@ const store = useAppStore();
     Quels sont les cours choisis par l'élève ?
   </h2>
 
-  <div
-    class="flex flex-col flex-1 gap-4 md:items-center md:flex-row md:flex-wrap"
-  >
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
     <div
       v-for="input in store.classesItems"
       :key="input.id"
-      class="flex flex-row-reverse p-2 transition-all border-2 cursor-pointer rounded-xl hover:shadow-md md:basis-64 md:grow-0"
+      class="flex flex-row-reverse p-2 transition-all border-2 cursor-pointer rounded-xl hover:shadow-md md:basis-1/2 md:grow-0"
       :class="
         store.checkedClasses.includes(input.id) &&
         'border-orange-300 bg-gradient-to-tr from-orange-200/90 to-orange-200'

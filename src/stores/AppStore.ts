@@ -1,11 +1,26 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { FormStep } from "../definitions/app.d";
+import { FormStep, Classes } from "../definitions/app.d";
+
+const COSTUME_BUDGET = 30;
+const MEMBERSHIP = 35;
+const MULTI_CLASS_DISCOUNT = 5;
+const LOCATION_DISCOUNT = 10;
 
 export const useAppStore = defineStore("app", () => {
-  const classesItems = ref([
+  const classesItems = ref<
     {
-      id: "enfants-1",
+      id: Classes;
+      label: string;
+      details: string;
+      day: string;
+      hours: string;
+      room: string;
+      price: number;
+    }[]
+  >([
+    {
+      id: Classes.Enfants1,
       label: "Enfants 1",
       details: "+ 4 ans",
       day: "Samedi",
@@ -14,7 +29,7 @@ export const useAppStore = defineStore("app", () => {
       price: 220,
     },
     {
-      id: "enfants-2",
+      id: Classes.Enfants2,
       label: "Enfants 2",
       details: "+ 8 ans",
       day: "Samedi",
@@ -23,7 +38,7 @@ export const useAppStore = defineStore("app", () => {
       price: 220,
     },
     {
-      id: "concours-13",
+      id: Classes.Concours13,
       label: "Concours - de 13 ans",
       details: "+ 9 ans",
       day: "Samedi",
@@ -32,7 +47,7 @@ export const useAppStore = defineStore("app", () => {
       price: 250,
     },
     {
-      id: "ados-1",
+      id: Classes.Ados1,
       label: "Ados 1",
       details: "+ 12 ans",
       day: "Vendredi",
@@ -41,7 +56,7 @@ export const useAppStore = defineStore("app", () => {
       price: 220,
     },
     {
-      id: "avances",
+      id: Classes.Avances,
       label: "Avancés",
       details: "Bon niveau technique exigé",
       day: "Mardi",
@@ -50,7 +65,7 @@ export const useAppStore = defineStore("app", () => {
       price: 250,
     },
     {
-      id: "concours-13-18",
+      id: Classes.Concours1318,
       label: "Concours 13 - 18 ans",
       details: "De 13 à 18 ans",
       day: "Vendredi",
@@ -59,7 +74,7 @@ export const useAppStore = defineStore("app", () => {
       price: 270,
     },
     {
-      id: "atelier-chore",
+      id: Classes.AtelierChore,
       label: "Atelier chorégraphique",
       details: "Solo, duo, trio",
       hours: "13h45 - 15h15",
@@ -68,7 +83,7 @@ export const useAppStore = defineStore("app", () => {
       price: 250,
     },
   ]);
-  const checkedClasses = ref<string[]>([]);
+  const checkedClasses = ref<Classes[]>([]);
 
   // Form State
   const formStep = ref<FormStep>(FormStep.Initial);
@@ -89,6 +104,21 @@ export const useAppStore = defineStore("app", () => {
     isAnimating.value = false;
   };
 
+  // Computed
+  const totalOfClasses = computed(() =>
+    classesItems.value
+      .filter((item) => checkedClasses.value.includes(item.id))
+      .reduce((acc, item) => acc + item.price, 0)
+  );
+  const costumeTotal = computed(
+    () =>
+      checkedClasses.value.filter((item) => item !== Classes.AtelierChore)
+        .length * COSTUME_BUDGET
+  );
+  const total = computed(
+    () => totalOfClasses.value + costumeTotal.value + MEMBERSHIP
+  );
+
   // Validation
   const handleSubmit = () => {
     console.log("submit");
@@ -102,5 +132,8 @@ export const useAppStore = defineStore("app", () => {
     handleFormStep,
     isAnimating,
     handleSubmit,
+    totalOfClasses,
+    costumeTotal,
+    total,
   };
 });

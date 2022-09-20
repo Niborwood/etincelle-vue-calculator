@@ -57,12 +57,12 @@ const store = useAppStore();
           </div>
 
           <!-- Classes -->
-          <div v-else-if="store.formStep === FormStep.Classes">
+          <div class="w-full" v-else-if="store.formStep === FormStep.Classes">
             <classes-form />
           </div>
 
           <!-- Summary -->
-          <div v-else-if="store.formStep === FormStep.Summary">
+          <div class="w-full" v-else-if="store.formStep === FormStep.Summary">
             <summary-form />
           </div>
         </transition>
