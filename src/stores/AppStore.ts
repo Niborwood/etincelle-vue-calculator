@@ -115,8 +115,17 @@ export const useAppStore = defineStore("app", () => {
       checkedClasses.value.filter((item) => item !== Classes.AtelierChore)
         .length * COSTUME_BUDGET
   );
+  const multiClassesDiscount = computed(() =>
+    checkedClasses.value.length > 1
+      ? totalOfClasses.value * MULTI_CLASS_DISCOUNT * 0.01
+      : 0
+  );
   const total = computed(
-    () => totalOfClasses.value + costumeTotal.value + MEMBERSHIP
+    () =>
+      totalOfClasses.value +
+      costumeTotal.value +
+      MEMBERSHIP -
+      multiClassesDiscount.value
   );
 
   // Validation
@@ -135,5 +144,6 @@ export const useAppStore = defineStore("app", () => {
     totalOfClasses,
     costumeTotal,
     total,
+    multiClassesDiscount,
   };
 });

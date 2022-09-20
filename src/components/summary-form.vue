@@ -28,7 +28,7 @@ const store = useAppStore();
 
   <div class="my-8">
     <h3 class="mb-2 text-lg font-bold">Tarifs</h3>
-    <div class="grid w-full grid-cols-2 gap-4 rounded-xl auto-cols-fr">
+    <div class="grid w-full grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl">
       <summary-card
         title="Nombre de cours"
         :number="store.checkedClasses.length"
@@ -44,14 +44,20 @@ const store = useAppStore();
         :number="store.costumeTotal"
         with-euros
       />
-      <summary-card title="Réduction Marne & Gondoire" :number="0" with-euros />
       <summary-card
-        title="Réduction plusieurs cours (5%)"
+        title="Réduction Marne & Gondoire"
         :number="0"
         with-euros
+        is-discount
       />
       <summary-card
-        class="col-span-2 border-orange-300 bg-orange-300/60"
+        title="Réduction plusieurs cours (5%)"
+        :number="store.multiClassesDiscount"
+        with-euros
+        is-discount
+      />
+      <summary-card
+        class="sm:col-span-2 border-orange-300 bg-orange-300/60"
         title="Total de l'année"
         :number="store.total"
         with-euros
