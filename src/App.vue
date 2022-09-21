@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAppStore } from "./stores/AppStore";
-import ClassesForm from "./components/InputGroup.vue";
+import ClassesForm from "./components/classes-form.vue";
 import SummaryForm from "./components/summary-form.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
