@@ -7,27 +7,34 @@ export interface SummaryCardProps {
   checked?: boolean;
   withEuros?: boolean;
   isDiscount?: boolean;
+  isTotal?: boolean;
 }
 
 const props = defineProps<SummaryCardProps>();
 </script>
 
 <template>
-  <div
-    class="flex flex-col justify-between p-8 border-2 rounded-xl"
-    :class="
-      props.isDiscount && number > 0 && 'bg-emerald-700/30 border-emerald-700'
-    "
-  >
-    <h3 :class="props.isDiscount && number > 0 && 'text-emerald-900'">
-      {{ props.title }}
-    </h3>
+  <div :class="props.isTotal && 'sm:col-span-2'">
     <div
-      class="text-4xl font-bold"
-      :class="props.isDiscount && number > 0 && 'text-emerald-700'"
+      class="flex flex-col justify-between p-8 border-4 rounded-xl"
+      :class="{
+        'bg-orange-300/60 border-orange-300 border-4': props.isTotal,
+        'bg-emerald-700/30 border-emerald-700': props.isDiscount && number > 0,
+      }"
     >
-      {{ props.number }}
-      <span v-show="props.withEuros">€</span>
+      <h3 :class="props.isDiscount && number > 0 && 'text-emerald-900'">
+        {{ props.title }}
+      </h3>
+      <div
+        class="text-4xl font-bold"
+        :class="props.isDiscount && number > 0 && 'text-emerald-700'"
+      >
+        {{ props.number }}
+        <span v-show="props.withEuros">€</span>
+      </div>
     </div>
+    <p class="px-4 mt-2 text-xs italic text-stone-600/80">
+      {{ props.helperText }}
+    </p>
   </div>
 </template>

@@ -28,7 +28,9 @@ const store = useAppStore();
 
   <div class="my-8">
     <h3 class="mb-2 text-lg font-bold">Tarifs</h3>
-    <div class="grid w-full grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl">
+    <div
+      class="grid w-full grid-cols-1 gap-4 md:gap-y-6 sm:grid-cols-2 rounded-xl"
+    >
       <summary-card
         title="Nombre de cours"
         :number="store.checkedClasses.length"
@@ -38,29 +40,37 @@ const store = useAppStore();
         :number="store.totalOfClasses"
         with-euros
       />
-      <summary-card title="Adhésion par élève" :number="35" with-euros />
+      <summary-card
+        title="Adhésion par élève"
+        :number="35"
+        with-euros
+        helper-text="L'adhésion permet à l'élève d'être assuré et de participer aux activités de l'association."
+      />
       <summary-card
         title="Budget costume"
         :number="store.costumeTotal"
         with-euros
+        :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${store.checkedClasses.length} x 30 €.`"
       />
       <summary-card
         title="Réduction Marne & Gondoire"
         :number="0"
         with-euros
         is-discount
+        helper-text="La liste des communes éligibles est disponible sur le site de la Marne et Gondoire."
       />
       <summary-card
         title="Réduction plusieurs cours (5%)"
         :number="store.multiClassesDiscount"
         with-euros
         is-discount
+        :helper-text="`La réduction est appliquée au montant total des cours sans budget ni adhésion, soit 5% de ${store.totalOfClasses} €.`"
       />
       <summary-card
-        class="sm:col-span-2 border-orange-300 bg-orange-300/60"
         title="Total de l'année"
         :number="store.total"
         with-euros
+        is-total
       />
     </div>
   </div>
