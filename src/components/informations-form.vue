@@ -3,6 +3,7 @@ import { TitleForm } from "./ui";
 import { FormKit } from "@formkit/vue";
 import { reactive } from "vue";
 import { getValidationMessages } from "@formkit/validation";
+import type { FormKitNode } from "@formkit/core";
 
 const formValues = reactive({
   name: "",
@@ -15,13 +16,14 @@ const formValues = reactive({
   city: "",
 });
 
-function showErrors(node) {
+const handleValidSubmit = () => {
+  console.log("Valid submit");
+};
+
+const handleInvalidSubmit = (node?: FormKitNode) => {
+  if (!node) return;
   const validations = getValidationMessages(node);
-  console.log(
-    "🚀 ~ file: informations-form.vue ~ line 20 ~ showErrors ~ validations",
-    validations
-  );
-}
+};
 </script>
 
 <template>
@@ -30,8 +32,8 @@ function showErrors(node) {
     id="informations"
     ref="myForm"
     type="form"
-    @submit-invalid="showErrors"
-    @submit="() => {}"
+    @submit-invalid="handleInvalidSubmit"
+    @submit="handleValidSubmit"
     :actions="false"
   >
     <div class="grid grid-cols-2 gap-x-8">
