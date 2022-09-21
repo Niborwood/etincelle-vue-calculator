@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import SummaryCard from "../components/ui/summary-card.vue";
+import { SummaryCard, TitleForm } from "../components/ui";
 import { useAppStore } from "@/stores/AppStore";
 
 const store = useAppStore();
 </script>
 
 <template>
-  <h2 class="mb-4 text-2xl italic font-bold text-orange-800">
-    Récapitulatif de l'inscription
-  </h2>
-  <div class="my-8">
+  <title-form>Récapitulatif de l'inscription</title-form>
+  <div class="mb-8">
     <h3 class="mb-2 text-lg font-bold">Cours choisis</h3>
     <div class="flex flex-row flex-wrap gap-2">
       <div
@@ -64,7 +62,11 @@ const store = useAppStore();
         :number="store.multiClassesDiscount"
         with-euros
         is-discount
-        :helper-text="`La réduction est appliquée au montant total des cours sans budget ni adhésion, soit 5% de ${store.totalOfClasses} €.`"
+        :helper-text="`${
+          store.checkedClasses.length > 1
+            ? `La réduction est appliquée au montant total des cours sans budget ni adhésion, soit 5% de ${store.totalOfClasses} €.`
+            : 'La réduction n\'est pas applicable car vous n\'avez choisi qu\'un seul cours.'
+        }`"
       />
       <summary-card
         title="Total de l'année"
