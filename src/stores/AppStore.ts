@@ -105,6 +105,7 @@ export const useAppStore = defineStore("app", () => {
   };
 
   // Computed
+
   const totalOfClasses = computed(() =>
     classesItems.value
       .filter((item) => checkedClasses.value.includes(item.id))

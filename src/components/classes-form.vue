@@ -6,9 +6,14 @@ const store = useAppStore();
 </script>
 
 <template>
-  <h2 class="mb-4 text-2xl italic font-bold text-orange-800">
-    Quels sont les cours choisis par l'élève ?
-  </h2>
+  <div class="mb-4">
+    <h2 class="text-2xl italic font-bold text-orange-800">
+      Quels sont les cours choisis par l'élève ?
+    </h2>
+    <p v-show="!store.checkedClasses.length">
+      Merci de sélectionner au moins un cours.
+    </p>
+  </div>
 
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
     <div

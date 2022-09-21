@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useAppStore } from "./stores/AppStore";
 import ClassesForm from "./components/classes-form.vue";
 import SummaryForm from "./components/summary-form.vue";
@@ -6,6 +7,14 @@ import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
 
 const store = useAppStore();
+
+const handleNextStep = () => {
+  // Don't go to next step if there is no class selected
+  if (store.formStep === FormStep.Classes && !store.checkedClasses.length)
+    return;
+
+  store.handleFormStep("next");
+};
 </script>
 
 <template>
@@ -81,8 +90,17 @@ const store = useAppStore();
               Précédent <ArrowLeft size="14" />
             </button>
             <button
-              class="flex flex-row items-center gap-1 p-4 font-bold transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
-              @click="() => store.handleFormStep('next')"
+              class="flex flex-row items-center gap-1 p-4 font-bold transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              :class="
+                store.formStep === FormStep.Classes &&
+                !store.checkedClasses.length &&
+                'bg-stone-300 hover:shadow-none cursor-not-allowed'
+              "
+              :disabled="
+                store.formStep === FormStep.Classes &&
+                !store.checkedClasses.length
+              "
+              @click="handleNextStep"
             >
               Suivant <ArrowRight size="14" />
             </button>
