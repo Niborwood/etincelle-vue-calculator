@@ -5,6 +5,7 @@ import SummaryForm from "./components/summary-form.vue";
 import InformationsForm from "./components/informations-form.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
+import { submitForm } from "@formkit/core";
 
 const store = useAppStore();
 
@@ -12,6 +13,10 @@ const handleNextStep = () => {
   // Don't go to next step if there is no class selected
   if (store.formStep === FormStep.Classes && !store.checkedClasses.length)
     return;
+
+  if (store.formStep === FormStep.Informations) {
+    submitForm("informations");
+  }
 
   store.handleFormStep("next");
 };
@@ -24,7 +29,7 @@ const handleNextStep = () => {
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
     </header>
-    <main class="md:p-8 md:w-1/2">
+    <main class="lg:p-8 lg:w-1/2">
       <div class="flex flex-col items-start justify-start gap-8">
         <!-- Initial -->
 
