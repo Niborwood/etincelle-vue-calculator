@@ -1,27 +1,19 @@
 <script setup lang="ts">
 import { TitleForm } from "./ui";
-import { FormKit, submitForm } from "@formkit/vue";
-import { reactive } from "vue";
-import { getValidationMessages } from "@formkit/validation";
-import type { FormKitNode } from "@formkit/core";
+import { FormKit } from "@formkit/vue";
 import { useAppStore } from "../stores/AppStore";
 
 const store = useAppStore();
-const formValues = reactive({
-  name: "",
-  surname: "",
-  birthday: "",
-  phone: "",
-  resp_email: "",
-  address: "",
-  postal_code: "",
-  city: "",
-});
-
-const handleInvalidSubmit = (node?: FormKitNode) => {
-  if (!node) return;
-  const validations = getValidationMessages(node);
-};
+// const formValues = reactive({
+//   name: "",
+//   surname: "",
+//   birthday: "",
+//   phone: "",
+//   resp_email: "",
+//   address: "",
+//   postal_code: "",
+//   city: "",
+// });
 </script>
 
 <template>
@@ -40,7 +32,6 @@ const handleInvalidSubmit = (node?: FormKitNode) => {
         name="name"
         label="Nom de l'élève"
         validation="required"
-        v-model="formValues.name"
       />
       <FormKit
         type="text"
@@ -60,7 +51,7 @@ const handleInvalidSubmit = (node?: FormKitNode) => {
         type="tel"
         name="phone"
         label="Numéro de téléphone de l'élève"
-        validation="matches:/^[0-9]{10}$/"
+        validation="required|matches:/^[0-9]{10}$/"
         :validation-messages="{
           matches:
             'Le numéro de téléphone doit être au format : xx-xx-xx-xx-xx',
