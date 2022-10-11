@@ -6,6 +6,10 @@ const COSTUME_BUDGET = 30;
 const MEMBERSHIP = 35;
 const MULTI_CLASS_DISCOUNT = 5;
 const LOCATION_DISCOUNT = 10;
+const MARNE_ET_GONDOIRE_ZIPCODES = [
+  77058, 77059, 77062, 77075, 77085, 77121, 77124, 77155, 77181, 77209, 77221,
+  77234, 77237, 77243, 77248, 77307, 77372, 77374, 77438, 77464,
+];
 
 export const useAppStore = defineStore("app", () => {
   const classesItems = ref<
@@ -86,7 +90,7 @@ export const useAppStore = defineStore("app", () => {
   const checkedClasses = ref<Classes[]>([]);
 
   // Form State
-  const formStep = ref<FormStep>(FormStep.Initial);
+  const formStep = ref<FormStep>(FormStep.Informations);
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
 

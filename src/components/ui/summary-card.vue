@@ -22,12 +22,20 @@ const props = defineProps<SummaryCardProps>();
         'bg-emerald-700/30 border-emerald-700': props.isDiscount && number > 0,
       }"
     >
-      <h3 :class="props.isDiscount && number > 0 && 'text-emerald-900'">
+      <h3
+        :class="{
+          'text-emerald-900': props.isDiscount && number > 0,
+          'text-stone-400': props.isDiscount && number <= 0,
+        }"
+      >
         {{ props.title }}
       </h3>
       <div
         class="text-4xl font-bold"
-        :class="props.isDiscount && number > 0 && 'text-emerald-700'"
+        :class="{
+          'text-emerald-700': props.isDiscount && number > 0,
+          'text-stone-400': props.isDiscount && number <= 0,
+        }"
       >
         {{ props.number }}
         <span v-show="props.withEuros">€</span>

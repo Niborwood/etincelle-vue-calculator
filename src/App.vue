@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useAppStore } from "./stores/AppStore";
 import ClassesForm from "./components/classes-form.vue";
 import SummaryForm from "./components/summary-form.vue";
+import InformationsForm from "./components/informations-form.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
+import { submitForm } from "@formkit/core";
 
 const store = useAppStore();
 
@@ -12,6 +13,10 @@ const handleNextStep = () => {
   // Don't go to next step if there is no class selected
   if (store.formStep === FormStep.Classes && !store.checkedClasses.length)
     return;
+
+  if (store.formStep === FormStep.Informations) {
+    submitForm("informations");
+  }
 
   store.handleFormStep("next");
 };
@@ -24,11 +29,8 @@ const handleNextStep = () => {
     <header>
       <h1 class="text-5xl font-bold">Calculateur Etincelle</h1>
     </header>
-    <main class="md:p-8 md:w-1/2">
-      <form
-        @submit.prevent="store.handleSubmit"
-        class="flex flex-col items-start justify-start gap-8"
-      >
+    <main class="lg:p-8 lg:w-1/2">
+      <div class="flex flex-col items-start justify-start gap-8">
         <!-- Initial -->
 
         <transition
@@ -65,6 +67,14 @@ const handleNextStep = () => {
             </div>
           </div>
 
+          <!-- Informations -->
+          <div
+            class="w-full"
+            v-else-if="store.formStep === FormStep.Informations"
+          >
+            <informations-form />
+          </div>
+
           <!-- Classes -->
           <div class="w-full" v-else-if="store.formStep === FormStep.Classes">
             <classes-form />
@@ -83,6 +93,7 @@ const handleNextStep = () => {
             class="flex flex-row justify-between w-full"
           >
             <button
+              type="button"
               class="flex flex-row-reverse items-center gap-1 p-4 font-bold transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
               @click="() => store.handleFormStep('prev')"
               v-if="store.formStep > 0"
@@ -90,6 +101,7 @@ const handleNextStep = () => {
               Précédent <ArrowLeft size="14" />
             </button>
             <button
+              type="button"
               class="flex flex-row items-center gap-1 p-4 font-bold transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
               :class="
                 store.formStep === FormStep.Classes &&
@@ -106,7 +118,7 @@ const handleNextStep = () => {
             </button>
           </div>
         </transition>
-      </form>
+      </div>
     </main>
   </div>
 </template>

@@ -1,5 +1,6 @@
 enum FormStep {
   Initial,
+  Informations,
   Classes,
   Summary,
   Payment,
