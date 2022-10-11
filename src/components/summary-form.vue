@@ -30,6 +30,7 @@ const store = useAppStore();
     <h3 class="mb-2 text-lg font-bold">Tarifs</h3>
     <div
       class="grid w-full grid-cols-1 gap-4 md:gap-y-6 sm:grid-cols-2 rounded-xl"
+      v-auto-animate
     >
       <summary-card
         title="Nombre de cours"

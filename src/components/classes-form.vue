@@ -42,14 +42,14 @@ const store = useAppStore();
         class="flex-1 block p-4 space-y-2 transition-all cursor-pointer select-none"
         :for="input.id"
       >
-        <div class="flex-1 font-bold">
-          <div>{{ input.label }}</div>
-          <div>{{ input.price }} €</div>
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold">{{ input.label }}</h3>
+          <div class="">{{ input.price }} €</div>
         </div>
-        <div>
-          <div class="text-sm">{{ input.details }}</div>
-          <div class="text-sm">{{ input.day }}, {{ input.hours }}</div>
-          <div class="text-sm text-stone-900/60">{{ input.room }}</div>
+        <div class="text-sm">
+          <div>{{ input.details }}</div>
+          <div>{{ input.day }}, {{ input.hours }}</div>
+          <div class="text-stone-900/60">{{ input.room }}</div>
         </div>
       </label>
     </div>
