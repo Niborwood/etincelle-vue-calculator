@@ -23,4 +23,5 @@ createApp(App)
       },
     })
   )
-  .use(autoAnimatePlugin).mount("#app");
+  .use(autoAnimatePlugin)
+  .mount("#app");

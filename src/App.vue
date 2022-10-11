@@ -10,13 +10,13 @@ import { submitForm } from "@formkit/core";
 const store = useAppStore();
 
 const handleNextStep = () => {
+  // Button for informations is submit form
+  if (store.formStep === FormStep.Informations)
+    return submitForm("informations");
+
   // Don't go to next step if there is no class selected
   if (store.formStep === FormStep.Classes && !store.checkedClasses.length)
     return;
-
-  if (store.formStep === FormStep.Informations) {
-    submitForm("informations");
-  }
 
   store.handleFormStep("next");
 };
@@ -98,7 +98,7 @@ const handleNextStep = () => {
               @click="() => store.handleFormStep('prev')"
               v-if="store.formStep > 0"
             >
-              Précédent <ArrowLeft size="14" />
+              Précédent <ArrowLeft :size="14" />
             </button>
             <button
               type="button"
@@ -114,7 +114,7 @@ const handleNextStep = () => {
               "
               @click="handleNextStep"
             >
-              Suivant <ArrowRight size="14" />
+              Suivant <ArrowRight :size="14" />
             </button>
           </div>
         </transition>

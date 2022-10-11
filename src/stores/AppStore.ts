@@ -93,6 +93,7 @@ export const useAppStore = defineStore("app", () => {
   const formStep = ref<FormStep>(FormStep.Informations);
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
+  const isInformationFormValid = ref(false);
 
   const handleFormStep = (step: "next" | "prev") => {
     isAnimating.value = true;
@@ -109,7 +110,6 @@ export const useAppStore = defineStore("app", () => {
   };
 
   // Computed
-
   const totalOfClasses = computed(() =>
     classesItems.value
       .filter((item) => checkedClasses.value.includes(item.id))
@@ -134,8 +134,12 @@ export const useAppStore = defineStore("app", () => {
   );
 
   // Validation
-  const handleSubmit = () => {
-    console.log("submit");
+  const handleValidInformationsSubmit = () => {
+    handleFormStep("next");
+  };
+
+  const handleInvalidInformationsSubmit = () => {
+    console.log("invalid");
   };
 
   return {
@@ -145,10 +149,12 @@ export const useAppStore = defineStore("app", () => {
     slideDirection,
     handleFormStep,
     isAnimating,
-    handleSubmit,
+    handleValidInformationsSubmit,
+    handleInvalidInformationsSubmit,
     totalOfClasses,
     costumeTotal,
     total,
     multiClassesDiscount,
+    isInformationFormValid,
   };
 });

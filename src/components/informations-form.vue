@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { TitleForm } from "./ui";
-import { FormKit } from "@formkit/vue";
+import { FormKit, submitForm } from "@formkit/vue";
 import { reactive } from "vue";
 import { getValidationMessages } from "@formkit/validation";
 import type { FormKitNode } from "@formkit/core";
+import { useAppStore } from "../stores/AppStore";
 
+const store = useAppStore();
 const formValues = reactive({
   name: "",
   surname: "",
@@ -15,10 +17,6 @@ const formValues = reactive({
   postal_code: "",
   city: "",
 });
-
-const handleValidSubmit = () => {
-  console.log("Valid submit");
-};
 
 const handleInvalidSubmit = (node?: FormKitNode) => {
   if (!node) return;
@@ -32,8 +30,8 @@ const handleInvalidSubmit = (node?: FormKitNode) => {
     id="informations"
     ref="myForm"
     type="form"
-    @submit-invalid="handleInvalidSubmit"
-    @submit="handleValidSubmit"
+    @submit-invalid="store.handleInvalidInformationsSubmit"
+    @submit="store.handleValidInformationsSubmit"
     :actions="false"
   >
     <div class="grid grid-cols-2 gap-x-8">
