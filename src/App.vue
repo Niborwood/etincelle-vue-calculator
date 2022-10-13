@@ -101,6 +101,7 @@ const handleNextStep = () => {
               Précédent <ArrowLeft :size="14" />
             </button>
             <button
+              v-if="store.formStep < FormStep.Invoice"
               type="button"
               class="flex flex-row items-center gap-1 p-4 font-bold transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
               :class="

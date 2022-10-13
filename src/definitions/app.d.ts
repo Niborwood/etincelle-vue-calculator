@@ -3,7 +3,7 @@ enum FormStep {
   Informations,
   Classes,
   Summary,
-  Payment,
+  Invoice,
 }
 
 enum Classes {

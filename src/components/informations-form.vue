@@ -4,16 +4,6 @@ import { FormKit } from "@formkit/vue";
 import { useAppStore } from "../stores/AppStore";
 
 const store = useAppStore();
-// const formValues = reactive({
-//   name: "",
-//   surname: "",
-//   birthday: "",
-//   phone: "",
-//   resp_email: "",
-//   address: "",
-//   postal_code: "",
-//   city: "",
-// });
 </script>
 
 <template>
