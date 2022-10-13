@@ -24,12 +24,12 @@ const handleNextStep = () => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 min-w-screen font-quicksand text-stone-700"
+    class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 font-medium min-w-screen font-quicksand text-stone-700"
   >
     <header>
-      <h1 class="text-5xl font-bold">Ecole de Danse Etincelle</h1>
+      <h1 class="font-bold text-7xl">Ecole de Danse Etincelle</h1>
     </header>
-    <main class="lg:p-8 lg:w-1/2">
+    <main class="mt-16 lg:w-2/3 xl:w-1/2">
       <div class="flex flex-col items-start justify-start gap-8">
         <!-- Initial -->
 

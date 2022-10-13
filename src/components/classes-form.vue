@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Circle, CheckCircle } from "lucide-vue-next";
+import { TitleForm } from "./ui";
 import { useAppStore } from "../stores/AppStore";
 
 const store = useAppStore();
@@ -7,9 +8,7 @@ const store = useAppStore();
 
 <template>
   <div class="mb-4">
-    <h2 class="text-2xl italic font-bold text-orange-800">
-      Quels sont les cours choisis par l'élève ?
-    </h2>
+    <title-form>Quels sont les cours choisis par l'élève ?</title-form>
     <p v-show="!store.checkedClasses.length">
       Merci de sélectionner au moins un cours.
     </p>
