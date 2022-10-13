@@ -10,7 +10,7 @@ const textClassification = {
     overflow-hidden
   `,
   input:
-    "w-full h-10 py-8 px-4 border-none text-base text-stone-700 placeholder-stone-400 text-lg font-medium",
+    "w-full h-10 py-8 px-4 border-none text-base text-stone-700 placeholder-stone-400 text-lg font-medium bg-gradient-to-br from-stone-200/70 to-stone-200/80 formkit-invalid:from-red-500/40 formkit-invalid:to-red-500/30",
 };
 const boxClassification = {
   fieldset: "max-w-md border border-stone-400 rounded-md px-2 pb-1",
@@ -34,9 +34,9 @@ export default {
   // the global key will apply to all inputs
   global: {
     outer: "mb-5 formkit-disabled:opacity-50",
-    help: "text-sm text-stone-500",
-    messages: "list-none p-0 mt-1 mb-0",
-    message: "text-red-500 mb-1 text-sm",
+    help: "text text-stone-500 ml-1",
+    messages: "list-none p-0 mt-1 ml-1 mb-0",
+    message: "text-red-500 mb-1 text",
   },
   button: buttonClassification,
   color: {
