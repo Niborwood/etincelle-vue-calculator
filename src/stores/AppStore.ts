@@ -94,6 +94,7 @@ export const useAppStore = defineStore("app", () => {
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
+  const formValues = ref(null);
 
   const handleFormStep = (step: "next" | "prev") => {
     isAnimating.value = true;
@@ -156,5 +157,6 @@ export const useAppStore = defineStore("app", () => {
     total,
     multiClassesDiscount,
     isInformationFormValid,
+    formValues,
   };
 });

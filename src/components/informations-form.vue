@@ -15,8 +15,9 @@ const store = useAppStore();
     @submit-invalid="store.handleInvalidInformationsSubmit"
     @submit="store.handleValidInformationsSubmit"
     :actions="false"
+    v-model="store.formValues"
   >
-    <div class="grid grid-cols-2 gap-x-8">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-8">
       <FormKit
         type="text"
         name="name"
