@@ -53,7 +53,7 @@ const store = useAppStore();
       />
       <summary-card
         title="Réduction Marne & Gondoire"
-        :number="0"
+        :number="store.locationDiscount"
         with-euros
         is-discount
         helper-text="La liste des communes éligibles est disponible sur le site de la Marne et Gondoire."

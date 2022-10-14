@@ -64,9 +64,10 @@ const store = useAppStore();
       <FormKit type="text" name="city" label="Ville" validation="required" />
       <FormKit
         type="text"
-        name="zip_code"
+        name="zipcode"
         label="Code Postal"
         validation="required|matches:/[0-9]{5}$/"
+        inputmode="numeric"
       />
     </div>
   </FormKit>

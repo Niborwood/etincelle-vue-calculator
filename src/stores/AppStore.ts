@@ -1,6 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { FormStep, Classes } from "../definitions/app.d";
+import type { FormValues } from "../definitions/app.d";
 
 const COSTUME_BUDGET = 30;
 const MEMBERSHIP = 35;
@@ -94,7 +95,8 @@ export const useAppStore = defineStore("app", () => {
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
-  const formValues = ref(null);
+  const formValues = ref<FormValues>(null);
+  const informationsValues = ref<FormValues>(null);
 
   const handleFormStep = (step: "next" | "prev") => {
     isAnimating.value = true;
@@ -126,16 +128,28 @@ export const useAppStore = defineStore("app", () => {
       ? totalOfClasses.value * MULTI_CLASS_DISCOUNT * 0.01
       : 0
   );
+  const locationDiscount = computed(() =>
+    MARNE_ET_GONDOIRE_ZIPCODES.includes(
+      informationsValues?.value?.zipcode
+        ? +informationsValues?.value.zipcode
+        : 0
+    )
+      ? LOCATION_DISCOUNT
+      : 0
+  );
+
   const total = computed(
     () =>
       totalOfClasses.value +
       costumeTotal.value +
       MEMBERSHIP -
-      multiClassesDiscount.value
+      multiClassesDiscount.value -
+      locationDiscount.value
   );
 
   // Validation
   const handleValidInformationsSubmit = () => {
+    informationsValues.value = formValues.value;
     handleFormStep("next");
   };
 
@@ -158,5 +172,7 @@ export const useAppStore = defineStore("app", () => {
     multiClassesDiscount,
     isInformationFormValid,
     formValues,
+    informationsValues,
+    locationDiscount,
   };
 });

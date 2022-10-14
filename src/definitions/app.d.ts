@@ -1,3 +1,5 @@
+import type { InputHTMLAttributes } from "vue";
+
 enum FormStep {
   Initial,
   Informations,
@@ -16,4 +18,15 @@ enum Classes {
   AtelierChore = "atelier-chore",
 }
 
-export { FormStep, Classes };
+type FormValues = {
+  name: string;
+  surname: string;
+  birthday: string;
+  phone: string;
+  resp_email: string;
+  address: string;
+  zipcode: string;
+  city: string;
+} | null;
+
+export { FormStep, Classes, FormValues };
