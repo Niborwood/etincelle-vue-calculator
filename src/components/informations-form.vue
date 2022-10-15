@@ -37,7 +37,12 @@ const store = useAppStore();
         label="Date de naissance de l'élève"
         validation="required"
       />
-      <FormKit type="text" name="" label="Nom et prénom du responsable légal" />
+      <FormKit
+        type="text"
+        name=""
+        label="Nom et prénom du responsable légal"
+        help="Dans le cas où l'élève est majeur, préciser le nom et prénom du contact d'urgence."
+      />
       <FormKit
         type="tel"
         name="phone"
@@ -61,7 +66,6 @@ const store = useAppStore();
         label="Adresse"
         validation="required"
       />
-      <FormKit type="text" name="city" label="Ville" validation="required" />
       <FormKit
         type="text"
         name="zipcode"
@@ -69,6 +73,7 @@ const store = useAppStore();
         validation="required|matches:/[0-9]{5}$/"
         inputmode="numeric"
       />
+      <FormKit type="text" name="city" label="Ville" validation="required" />
     </div>
   </FormKit>
 </template>
