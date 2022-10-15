@@ -3,6 +3,7 @@ import { useAppStore } from "./stores/AppStore";
 import ClassesForm from "./components/classes-form.vue";
 import SummaryForm from "./components/summary-form.vue";
 import InformationsForm from "./components/informations-form.vue";
+import RulesSection from "./components/rules-section.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
 import { submitForm } from "@formkit/core";
@@ -84,6 +85,11 @@ const handleNextStep = () => {
           <div class="w-full" v-else-if="store.formStep === FormStep.Summary">
             <summary-form />
           </div>
+
+          <!-- Rules -->
+          <div class="w-full" v-else-if="store.formStep === FormStep.Rules">
+            <rules-section />
+          </div>
         </transition>
 
         <!-- Control buttons -->
@@ -94,7 +100,7 @@ const handleNextStep = () => {
           >
             <button
               type="button"
-              class="flex flex-row-reverse items-center gap-1 p-4 font-bold transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              class="flex flex-row-reverse items-center gap-1 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
               @click="() => store.handleFormStep('prev')"
               v-if="store.formStep > 0"
             >
@@ -103,7 +109,7 @@ const handleNextStep = () => {
             <button
               v-if="store.formStep < FormStep.Invoice"
               type="button"
-              class="flex flex-row items-center gap-1 p-4 font-bold transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              class="flex flex-row items-center gap-1 p-4 text-xl font-semibold tracking-wider transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
               :class="
                 store.formStep === FormStep.Classes &&
                 !store.checkedClasses.length &&

@@ -91,7 +91,7 @@ export const useAppStore = defineStore("app", () => {
   const checkedClasses = ref<Classes[]>([]);
 
   // Form State
-  const formStep = ref<FormStep>(FormStep.Informations);
+  const formStep = ref<FormStep>(FormStep.Rules);
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);

@@ -1,10 +1,9 @@
-import type { InputHTMLAttributes } from "vue";
-
 enum FormStep {
   Initial,
   Informations,
   Classes,
   Summary,
+  Rules,
   Invoice,
 }
 

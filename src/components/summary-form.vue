@@ -59,7 +59,7 @@ const store = useAppStore();
         helper-text="La liste des communes éligibles est disponible sur le site de la Marne et Gondoire."
       />
       <summary-card
-        title="Réduction plusieurs cours (5%)"
+        title="Réduction plusieurs cours"
         :number="store.multiClassesDiscount"
         with-euros
         is-discount
