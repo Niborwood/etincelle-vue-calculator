@@ -4,6 +4,7 @@ enum FormStep {
   Classes,
   Summary,
   Rules,
+  Confirmation,
   Invoice,
 }
 
