@@ -18,8 +18,8 @@ const boxClassification = {
   wrapper: "flex items-center cursor-pointer",
   help: "mb-1",
   input:
-    "form-check-input appearance-none h-5 w-5 mr-2 border border-stone-500 rounded-sm bg-white checked:bg-orange-500 focus:outline-none focus:ring-0 transition duration-200",
-  label: " text-stone-700 mt-1",
+    "form-check-input appearance-none h-5 w-5 mr-2 border border-stone-500 rounded-sm bg-white checked:bg-orange-500 checked:border-orange-600 focus:outline-none focus:ring-0 transition duration-200 mr-4",
+  label: "text-stone-700 mt-1 text-xl",
 };
 const buttonClassification = {
   wrapper: "mb-1",

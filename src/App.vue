@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAppStore } from "./stores/AppStore";
-import ClassesForm from "./components/classes-section.vue";
-import SummaryForm from "./components/summary-section.vue";
+import ClassesSection from "./components/classes-section.vue";
+import SummarySection from "./components/summary-section.vue";
 import InformationsSection from "./components/informations-section.vue";
 import RulesSection from "./components/rules-section.vue";
 import { FormStep } from "./definitions/app.d";
@@ -14,10 +14,6 @@ const handleNextStep = () => {
   // Button for informations is submit form
   if (store.formStep === FormStep.Informations)
     return submitForm("informations");
-
-  // Don't go to next step if there is no class selected
-  if (store.formStep === FormStep.Classes && !store.checkedClasses.length)
-    return;
 
   store.handleFormStep("next");
 };
@@ -93,7 +89,7 @@ const handleNextStep = () => {
 
           <!-- Confirmation -->
           <div class="w-full" v-else-if="store.formStep === FormStep.Invoice">
-            <rules-section />
+            <div>Invoice Section</div>
           </div>
         </transition>
 
@@ -105,20 +101,19 @@ const handleNextStep = () => {
           >
             <button
               type="button"
-              class="flex flex-row-reverse items-center gap-1 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              class="flex flex-row-reverse items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
               @click="() => store.handleFormStep('prev')"
-              v-if="store.formStep > 0"
+              v-if="store.formStep > FormStep.Initial"
             >
-              Précédent <ArrowLeft :size="14" />
+              Précédent <ArrowLeft :size="28" />
             </button>
             <button
               v-if="store.formStep < FormStep.Invoice"
               type="button"
-              class="flex flex-row items-center gap-1 p-4 text-xl font-semibold tracking-wider transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100"
+              class="flex flex-row items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-all bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
               :class="
-                store.formStep === FormStep.Classes &&
-                !store.checkedClasses.length &&
-                'bg-stone-300 hover:shadow-none cursor-not-allowed'
+                store.isNextButtonDisabled &&
+                'bg-stone-300 hover:shadow-none hover:bg-stone-300 cursor-not-allowed'
               "
               :disabled="
                 store.formStep === FormStep.Classes &&
@@ -126,7 +121,7 @@ const handleNextStep = () => {
               "
               @click="handleNextStep"
             >
-              Suivant <ArrowRight :size="14" />
+              Suivant <ArrowRight :size="28" />
             </button>
           </div>
         </transition>

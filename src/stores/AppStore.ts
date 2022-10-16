@@ -2,6 +2,7 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { FormStep, Classes } from "../definitions/app.d";
 import type { FormValues } from "../definitions/app.d";
+import { submitForm } from "@formkit/core";
 
 const COSTUME_BUDGET = 30;
 const MEMBERSHIP = 35;
@@ -91,14 +92,19 @@ export const useAppStore = defineStore("app", () => {
   const checkedClasses = ref<Classes[]>([]);
 
   // Form State
-  const formStep = ref<FormStep>(FormStep.Rules);
+  const formStep = ref<FormStep>(FormStep.Initial);
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
   const formValues = ref<FormValues>(null);
   const informationsValues = ref<FormValues>(null);
+  const areRulesChecked = ref(false);
 
   const handleFormStep = (step: "next" | "prev") => {
+    // Check if any condition is disabling next action (see computed isNextButtonDisabled below)
+    if (step === "next" && isNextButtonDisabled.value) return;
+
+    // Else, update form step with animation trigger and direction (prev or next)
     isAnimating.value = true;
 
     if (step === "next") {
@@ -113,6 +119,24 @@ export const useAppStore = defineStore("app", () => {
   };
 
   // Computed
+  const isNextButtonDisabled = computed(() => {
+    // If we are on informations step/form, run formkit's submitForm to check if form is valid
+    if (formStep.value === FormStep.Informations)
+      return submitForm("informations");
+
+    if (
+      // If we are on the rules step, check if rules checkbox agreement is checked
+      (formStep.value === FormStep.Rules && !areRulesChecked.value) ||
+      // If we are on the classes step, check if at least one class is checked
+      (formStep.value === FormStep.Classes && !checkedClasses.value.length) ||
+      // If we are on the informations step, check if informations form is valid
+      (formStep.value === FormStep.Informations &&
+        !isInformationFormValid.value)
+    )
+      return true;
+    return false;
+  });
+
   const totalOfClasses = computed(() =>
     classesItems.value
       .filter((item) => checkedClasses.value.includes(item.id))
@@ -150,11 +174,12 @@ export const useAppStore = defineStore("app", () => {
   // Validation
   const handleValidInformationsSubmit = () => {
     informationsValues.value = formValues.value;
+    isInformationFormValid.value = true;
     handleFormStep("next");
   };
 
   const handleInvalidInformationsSubmit = () => {
-    console.log("invalid");
+    isInformationFormValid.value = false;
   };
 
   return {
@@ -174,5 +199,7 @@ export const useAppStore = defineStore("app", () => {
     formValues,
     informationsValues,
     locationDiscount,
+    areRulesChecked,
+    isNextButtonDisabled,
   };
 });

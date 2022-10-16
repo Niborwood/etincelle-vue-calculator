@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { TitleForm, RuleBlock } from "./ui";
+import { useAppStore } from "../stores/AppStore";
+
+const store = useAppStore();
 </script>
 
 <template>
@@ -169,5 +172,11 @@ import { TitleForm, RuleBlock } from "./ui";
         </li>
       </ul>
     </rule-block>
+    <FormKit
+      type="checkbox"
+      label="J'accepte le règlement intérieur d'Etincelle"
+      help="En cochant cette case, l'élève et son représentant légal acceptent l'ensemble du règlement présenté ci-dessus et s'engagent à le respecter sans réserve pour toute l'année d'inscription."
+      v-model="store.areRulesChecked"
+    />
   </div>
 </template>
