@@ -10,7 +10,7 @@ const store = useAppStore();
 <template>
   <title-form>Récapitulatif</title-form>
   <div
-    class="bg-orange-500 bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg px-12 py-8"
+    class="bg-orange-500 bg-opacity-20 backdrop-blur-lg rounded-xl drop-shadow-lg px-12 py-8"
   >
     <div class="mb-8">
       <div class="text-stone-500 font-normal text-sm">Nom de l'élève</div>
