@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { SummaryCard, TitleForm } from "./ui";
+import { SummaryCard, TitleForm } from "../ui";
 import { useAppStore } from "@/stores/AppStore";
-import { Classes } from "../definitions/app.d";
+import { Classes } from "../../definitions/app.d";
 
 const store = useAppStore();
 </script>

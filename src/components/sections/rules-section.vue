@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { TitleForm, RuleBlock } from "./ui";
-import { useAppStore } from "../stores/AppStore";
+import { TitleForm, RuleBlock } from "@/components/ui";
+import { useAppStore } from "@/stores/AppStore";
 
 const store = useAppStore();
 </script>

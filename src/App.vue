@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useAppStore } from "./stores/AppStore";
-import ClassesSection from "./components/classes-section.vue";
-import SummarySection from "./components/summary-section.vue";
-import InformationsSection from "./components/informations-section.vue";
-import RulesSection from "./components/rules-section.vue";
+import ClassesSection from "./components/sections/classes-section.vue";
+import SummarySection from "./components/sections/summary-section.vue";
+import InformationsSection from "./components/sections/informations-section.vue";
+import RulesSection from "./components/sections/rules-section.vue";
 import { FormStep } from "./definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
 import { submitForm } from "@formkit/core";
@@ -88,7 +88,10 @@ const handleNextStep = () => {
           </div>
 
           <!-- Confirmation -->
-          <div class="w-full" v-else-if="store.formStep === FormStep.Invoice">
+          <div
+            class="w-full"
+            v-else-if="store.formStep === FormStep.Confirmation"
+          >
             <div>Invoice Section</div>
           </div>
         </transition>

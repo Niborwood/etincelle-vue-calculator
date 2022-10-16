@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { TitleForm } from "./ui";
+import { TitleForm } from "@/components/ui";
 import { FormKit } from "@formkit/vue";
-import { useAppStore } from "../stores/AppStore";
+import { useAppStore } from "@/stores/AppStore";
 
 const store = useAppStore();
 </script>

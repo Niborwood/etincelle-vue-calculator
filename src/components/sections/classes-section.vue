@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Circle, CheckCircle } from "lucide-vue-next";
-import { TitleForm } from "./ui";
-import { useAppStore } from "../stores/AppStore";
+import { TitleForm } from ".././ui";
+import { useAppStore } from "../../stores/AppStore";
 
 const store = useAppStore();
 </script>
