@@ -98,15 +98,15 @@ export const useAppStore = defineStore("app", () => {
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
   const formValues = ref<FormValues>({
-    name: "",
-    surname: "",
-    birthday: "",
-    resp_name: "",
-    phone: "",
-    resp_email: "",
-    address: "",
-    zipcode: "",
-    city: "",
+    name: "Robin",
+    surname: "Souriau",
+    birthday: "1993/01/06",
+    resp_name: "Marine Buron",
+    phone: "0620312364",
+    resp_email: "robin.souriau@gmail.com",
+    address: "4 rue Louis Jouvet",
+    zipcode: "93160",
+    city: "Noisy le Grand",
   });
   const areRulesChecked = ref(false);
 
