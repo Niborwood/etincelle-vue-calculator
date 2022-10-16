@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { SummaryCard, TitleForm } from "./ui";
 import { useAppStore } from "@/stores/AppStore";
+import { Classes } from "../definitions/app.d";
 
 const store = useAppStore();
 </script>
@@ -49,7 +50,15 @@ const store = useAppStore();
         title="Budget costume"
         :number="store.costumeTotal"
         with-euros
-        :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${store.checkedClasses.length} x 30 €.`"
+        :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${
+          !store.checkedClasses.includes(Classes.AtelierChore)
+            ? store.checkedClasses.length
+            : store.checkedClasses.length - 1
+        } x 30 €. ${
+          store.checkedClasses.includes(Classes.AtelierChore)
+            ? 'Le cours atelier chorégraphique ne possède pas de budget costume intégré.'
+            : ''
+        }`"
       />
       <summary-card
         title="Réduction Marne & Gondoire"
