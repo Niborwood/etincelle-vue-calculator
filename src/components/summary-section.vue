@@ -7,14 +7,14 @@ const store = useAppStore();
 
 <template>
   <title-form>Récapitulatif de l'inscription</title-form>
-  <div class="mb-8">
-    <h3 class="mb-2 text-lg font-bold">Cours choisis</h3>
+  <div class="mb-16">
+    <h3 class="mb-4 text-4xl font-bold">Cours choisis</h3>
     <div class="flex flex-row flex-wrap gap-2">
       <div
-        class="px-4 py-2 rounded-full bg-stone-200 text-stone-400/60"
+        class="px-4 py-2 rounded-full bg-stone-200 text-stone-400/60 font-semibold"
         :class="
           store.checkedClasses.includes(classItem.id) &&
-          'bg-orange-500 text-stone-100'
+          'bg-orange-600/80 text-stone-50 font-semibold'
         "
         v-for="classItem in store.classesItems"
         :key="classItem.id"
@@ -25,7 +25,7 @@ const store = useAppStore();
   </div>
 
   <div class="my-8">
-    <h3 class="mb-2 text-lg font-bold">Tarifs</h3>
+    <h3 class="mb-4 text-4xl font-bold">Tarifs</h3>
     <div
       class="grid w-full grid-cols-1 gap-4 md:gap-y-6 sm:grid-cols-2 rounded-xl"
       v-auto-animate

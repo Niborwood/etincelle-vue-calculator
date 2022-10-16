@@ -41,7 +41,7 @@ const props = defineProps<SummaryCardProps>();
         <span v-show="props.withEuros">€</span>
       </div>
     </div>
-    <p class="px-4 mt-2 italic font-medium text-stone-600/80">
+    <p class="px-4 mt-2 italic font-normal text-stone-600/80">
       {{ props.helperText }}
     </p>
   </div>
