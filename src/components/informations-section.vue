@@ -15,7 +15,6 @@ const store = useAppStore();
     @submit-invalid="store.handleInvalidInformationsSubmit"
     @submit="store.handleValidInformationsSubmit"
     :actions="false"
-    v-model="store.formValues"
   >
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-8">
       <FormKit
@@ -23,25 +22,29 @@ const store = useAppStore();
         name="name"
         label="Nom de l'élève"
         validation="required"
+        v-model="store.formValues.name"
       />
       <FormKit
         type="text"
         name="surname"
         label="Prénom de l'élève"
         validation="required"
+        v-model="store.formValues.surname"
       />
       <FormKit
         type="date"
         name="birthday"
-        value="2011-01-01"
         label="Date de naissance de l'élève"
         validation="required"
+        v-model="store.formValues.birthday"
       />
       <FormKit
         type="text"
-        name=""
+        name="resp_name"
         label="Nom et prénom du responsable légal"
         help="Dans le cas où l'élève est majeur, préciser le nom et prénom du contact d'urgence."
+        validation="required"
+        v-model="store.formValues.resp_name"
       />
       <FormKit
         type="tel"
@@ -52,6 +55,7 @@ const store = useAppStore();
           matches:
             'Le numéro de téléphone doit être au format : xx-xx-xx-xx-xx',
         }"
+        v-model="store.formValues.phone"
       />
       <FormKit
         type="email"
@@ -59,12 +63,14 @@ const store = useAppStore();
         label="Mail du responsable légal"
         help="Dans le cas où l'élève est majeur, le mail peut être celui de l'élève."
         validation="required|email"
+        v-model="store.formValues.resp_email"
       />
       <FormKit
         type="text"
         name="address"
         label="Adresse"
         validation="required"
+        v-model="store.formValues.address"
       />
       <FormKit
         type="text"
@@ -72,8 +78,15 @@ const store = useAppStore();
         label="Code Postal"
         validation="required|matches:/[0-9]{5}$/"
         inputmode="numeric"
+        v-model="store.formValues.zipcode"
       />
-      <FormKit type="text" name="city" label="Ville" validation="required" />
+      <FormKit
+        type="text"
+        name="city"
+        label="Ville"
+        validation="required"
+        v-model="store.formValues.city"
+      />
     </div>
   </FormKit>
 </template>

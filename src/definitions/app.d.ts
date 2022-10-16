@@ -22,11 +22,12 @@ type FormValues = {
   name: string;
   surname: string;
   birthday: string;
+  resp_name: string;
   phone: string;
   resp_email: string;
   address: string;
   zipcode: string;
   city: string;
-} | null;
+};
 
 export { FormStep, Classes, FormValues };

@@ -13,6 +13,7 @@ const MARNE_ET_GONDOIRE_ZIPCODES = [
   77234, 77237, 77243, 77248, 77307, 77372, 77374, 77438, 77464,
 ];
 
+// STORE
 export const useAppStore = defineStore("app", () => {
   const classesItems = ref<
     {
@@ -96,8 +97,17 @@ export const useAppStore = defineStore("app", () => {
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
-  const formValues = ref<FormValues>(null);
-  const informationsValues = ref<FormValues>(null);
+  const formValues = ref<FormValues>({
+    name: "",
+    surname: "",
+    birthday: "",
+    resp_name: "",
+    phone: "",
+    resp_email: "",
+    address: "",
+    zipcode: "",
+    city: "",
+  });
   const areRulesChecked = ref(false);
 
   const handleFormStep = (step: "next" | "prev") => {
@@ -154,9 +164,7 @@ export const useAppStore = defineStore("app", () => {
   );
   const locationDiscount = computed(() =>
     MARNE_ET_GONDOIRE_ZIPCODES.includes(
-      informationsValues?.value?.zipcode
-        ? +informationsValues?.value.zipcode
-        : 0
+      formValues.value.zipcode ? +formValues.value.zipcode : 0
     )
       ? LOCATION_DISCOUNT
       : 0
@@ -173,7 +181,6 @@ export const useAppStore = defineStore("app", () => {
 
   // Validation
   const handleValidInformationsSubmit = () => {
-    informationsValues.value = formValues.value;
     isInformationFormValid.value = true;
     handleFormStep("next");
   };
@@ -197,7 +204,6 @@ export const useAppStore = defineStore("app", () => {
     multiClassesDiscount,
     isInformationFormValid,
     formValues,
-    informationsValues,
     locationDiscount,
     areRulesChecked,
     isNextButtonDisabled,
