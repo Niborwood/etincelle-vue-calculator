@@ -29,7 +29,7 @@ const handleNextStep = () => {
     <header>
       <h1 class="font-bold text-7xl">Ecole de Danse Etincelle</h1>
     </header>
-    <main class="mt-16 lg:w-2/3 xl:w-1/2">
+    <main class="w-full mt-16 xl:w-2/3">
       <div class="flex flex-col items-start justify-start gap-8">
         <!-- Initial -->
 
