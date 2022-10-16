@@ -11,6 +11,6 @@ const props = defineProps<RuleBlock>();
     <h3 class="mb-2 text-2xl font-bold tracking-wider uppercase">
       {{ props.title }}
     </h3>
-    <div class=""><slot /></div>
+    <div class="space-y-4"><slot /></div>
   </div>
 </template>
