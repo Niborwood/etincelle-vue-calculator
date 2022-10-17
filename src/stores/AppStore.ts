@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { FormStep, Classes } from "../definitions/app.d";
+import { FormStep, Classes, PaymentType } from "../definitions/app.d";
 import type { FormValues } from "../definitions/app.d";
 import { submitForm } from "@formkit/core";
 
@@ -191,6 +191,9 @@ export const useAppStore = defineStore("app", () => {
     isInformationFormValid.value = false;
   };
 
+  // Confirmation
+  const paymentType = ref<PaymentType>(PaymentType.One);
+
   return {
     classesItems,
     checkedClasses,
@@ -209,5 +212,6 @@ export const useAppStore = defineStore("app", () => {
     locationDiscount,
     areRulesChecked,
     isNextButtonDisabled,
+    paymentType,
   };
 });

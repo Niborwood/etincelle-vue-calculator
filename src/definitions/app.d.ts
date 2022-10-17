@@ -30,4 +30,9 @@ type FormValues = {
   city: string;
 };
 
-export { FormStep, Classes, FormValues };
+enum PaymentType {
+  One = "one_time",
+  Three = "three_time",
+}
+
+export { FormStep, Classes, FormValues, PaymentType };

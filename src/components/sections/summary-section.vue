@@ -12,7 +12,7 @@ const store = useAppStore();
     <h3 class="mb-4 text-4xl font-bold">Cours choisis</h3>
     <div class="flex flex-row flex-wrap gap-2">
       <div
-        class="px-4 py-2 rounded-full bg-stone-200 text-stone-400/60 font-semibold"
+        class="px-4 py-2 font-semibold rounded-full bg-stone-200 text-stone-400/60"
         :class="
           store.checkedClasses.includes(classItem.id) &&
           'bg-orange-600/80 text-stone-50 font-semibold'
@@ -83,6 +83,7 @@ const store = useAppStore();
         :number="store.total"
         with-euros
         is-total
+        helper-text="NB : pour les classes concours, le prix des inscriptions aux concours n’est pas inclus dans le total de l'année."
       />
     </div>
   </div>

@@ -13,8 +13,7 @@ const textClassification = {
     "w-full h-10 py-8 px-4 border-none text-base text-stone-700 placeholder-stone-400 text-lg font-medium bg-gradient-to-br from-stone-200/70 to-stone-200/80 formkit-invalid:from-red-500/40 formkit-invalid:to-red-500/30",
 };
 const boxClassification = {
-  fieldset: "max-w-md border border-stone-400 rounded-md px-2 pb-1",
-  legend: "font-bold",
+  legend: "font-semibold text-lg pb-2",
   wrapper: "flex items-center cursor-pointer",
   help: "mb-1",
   input:
@@ -62,7 +61,7 @@ export default {
   password: textClassification,
   radio: {
     ...boxClassification,
-    input: boxClassification.input.replace("rounded-sm", "rounded-full"),
+    input: boxClassification.input.replace("rounded-sm", "rounded-lg"),
   },
   range: {
     inner: "max-w-md",
