@@ -6,6 +6,7 @@ import { PaymentType } from "@/definitions/app.d";
 import { MapPin, Phone, Calendar, User } from "lucide-vue-next";
 
 const store = useAppStore();
+const nextYear = new Date().getFullYear() + 1;
 </script>
 
 <template>
@@ -87,14 +88,6 @@ const store = useAppStore();
           </div>
         </div>
         <!-- Total de l'année -->
-        <div>
-          <div
-            class="flex items-center gap-1 text-sm font-normal text-stone-500"
-          >
-            <User :size="14" />Total de l'année
-          </div>
-          <div class="text-5xl font-bold font-regular">{{ store.total }} €</div>
-        </div>
       </div>
       <!-- Paiement -->
     </div>
@@ -112,6 +105,35 @@ const store = useAppStore();
         ]"
         v-model="store.paymentType"
       />
+
+      <h5 class="text-lg font-semibold">Déroulé du paiement</h5>
+      <div>
+        <div class="text-5xl font-bold font-regular">{{ store.total }} €</div>
+      </div>
+      <div v-if="store.paymentType === PaymentType.One">
+        à payer en <strong>1</strong> fois le
+        <strong>15/10/{{ nextYear }}</strong
+        >.
+      </div>
+
+      <div v-else>
+        à payer en <strong>3</strong> fois :
+
+        <ul class="pl-1 mt-2 text-lg list-inside">
+          <li>
+            <strong>{{ store.payments.first }} €</strong> (1/3 total + adhésion)
+            le <strong>15/09/{{ nextYear }}</strong>
+          </li>
+          <li>
+            <strong>{{ store.payments.second }} €</strong> (1/3 total +
+            costumes) le <strong>01/11/{{ nextYear }}</strong>
+          </li>
+          <li>
+            <strong>{{ store.payments.third }} €</strong> (reste) le
+            <strong> 01/02/{{ nextYear + 1 }} </strong>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

@@ -90,7 +90,7 @@ export const useAppStore = defineStore("app", () => {
       price: 250,
     },
   ]);
-  const checkedClasses = ref<Classes[]>([]);
+  const checkedClasses = ref<Classes[]>([Classes.Ados1, Classes.Concours13]);
 
   // Form State
   const formStep = ref<FormStep>(
@@ -193,6 +193,17 @@ export const useAppStore = defineStore("app", () => {
 
   // Confirmation
   const paymentType = ref<PaymentType>(PaymentType.One);
+  const payments = computed(() => {
+    const first = Math.round(total.value / 3 + MEMBERSHIP);
+    const second = Math.round(total.value / 3 + costumeTotal.value);
+    const third = total.value - first - second;
+
+    return {
+      first,
+      second,
+      third,
+    };
+  });
 
   return {
     classesItems,
@@ -213,5 +224,6 @@ export const useAppStore = defineStore("app", () => {
     areRulesChecked,
     isNextButtonDisabled,
     paymentType,
+    payments,
   };
 });
