@@ -89,24 +89,26 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
         <!-- Total de l'année -->
       </div>
-      <!-- Paiement -->
+      <!-- Règlement -->
     </div>
     <div
       class="px-12 py-8 bg-slate-400 bg-opacity-20 backdrop-blur-2xl rounded-xl drop-shadow-2xl"
     >
-      <h4 class="my-4 text-4xl font-bold">Paiement</h4>
+      <h5 class="mb-2 text-2xl font-semibold">Type de règlement</h5>
       <FormKit
         type="radio"
         name="payment_type"
-        label="Choix du paiement souhaité"
         :options="[
-          { label: 'Paiement en une fois', value: PaymentType.One },
-          { label: 'Paiement en trois fois', value: PaymentType.Three },
+          { label: 'Règlement en une fois (chèque)', value: PaymentType.One },
+          {
+            label: 'Règlement en trois fois (chèque)',
+            value: PaymentType.Three,
+          },
         ]"
         v-model="store.paymentType"
       />
 
-      <h5 class="text-lg font-semibold">Déroulé du paiement</h5>
+      <h5 class="mb-2 text-2xl font-semibold">Déroulé du règlement</h5>
       <div>
         <div class="text-5xl font-bold font-regular">{{ store.total }} €</div>
       </div>
