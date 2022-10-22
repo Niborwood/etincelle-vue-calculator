@@ -3,6 +3,7 @@ import ConfirmationSection from "./confirmation-section.vue";
 import InformationsSection from "./informations-section.vue";
 import RulesSection from "./rules-section.vue";
 import SummarySection from "./summary-section.vue";
+import InvoiceSection from "./invoice-section.vue";
 
 export {
   ClassesSection,
@@ -10,4 +11,5 @@ export {
   InformationsSection,
   RulesSection,
   SummarySection,
+  InvoiceSection,
 };

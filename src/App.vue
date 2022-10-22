@@ -6,6 +6,7 @@ import {
   InformationsSection,
   RulesSection,
   ConfirmationSection,
+  InvoiceSection,
 } from "@/components/sections";
 import { FormStep } from "@/definitions/app.d";
 import { ArrowLeft, ArrowRight } from "lucide-vue-next";
@@ -99,6 +100,11 @@ const handleNextStep = () => {
           >
             <confirmation-section />
           </div>
+
+          <!-- Invoice -->
+          <div class="w-full" v-else-if="store.formStep === FormStep.Invoice">
+            <invoice-section />
+          </div>
         </transition>
 
         <!-- Control buttons -->
@@ -111,7 +117,10 @@ const handleNextStep = () => {
               type="button"
               class="flex flex-row-reverse items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
               @click="() => store.handleFormStep({ step: 'prev' })"
-              v-if="store.formStep > FormStep.Initial"
+              v-if="
+                store.formStep > FormStep.Initial &&
+                store.formStep !== FormStep.Invoice
+              "
             >
               Précédent <ArrowLeft :size="28" />
             </button>
