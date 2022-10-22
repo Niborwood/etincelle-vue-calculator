@@ -16,7 +16,7 @@ const store = useAppStore();
     @submit="store.handleValidInformationsSubmit"
     :actions="false"
   >
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8">
       <FormKit
         type="text"
         name="name"
