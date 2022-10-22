@@ -15,7 +15,7 @@ const handleEditInformations = () =>
   <title-form>Récapitulatif</title-form>
   <div class="grid gap-8 xl:grid-cols-2">
     <div
-      class="px-12 py-8 bg-orange-500 bg-opacity-20 backdrop-blur-2xl rounded-xl drop-shadow-2xl"
+      class="px-12 py-8 bg-orange-500 bg-opacity-20 rounded-xl drop-shadow-2xl"
     >
       <div class="mb-8">
         <div class="text-sm font-normal text-stone-500">Nom de l'élève</div>
@@ -100,16 +100,16 @@ const handleEditInformations = () =>
       <!-- Règlement -->
     </div>
     <div
-      class="px-12 py-8 bg-slate-400 bg-opacity-20 backdrop-blur-2xl rounded-xl drop-shadow-2xl"
+      class="px-12 py-8 bg-slate-400 bg-opacity-20 rounded-xl drop-shadow-2xl"
     >
       <h5 class="mb-2 text-2xl font-semibold">Type de règlement</h5>
       <FormKit
         type="radio"
         name="payment_type"
         :options="[
-          { label: 'Règlement en une fois (chèque)', value: PaymentType.One },
+          { label: 'Règlement en une fois', value: PaymentType.One },
           {
-            label: 'Règlement en trois fois (chèque)',
+            label: 'Règlement en trois fois',
             value: PaymentType.Three,
           },
         ]"
@@ -121,7 +121,7 @@ const handleEditInformations = () =>
         <div class="text-5xl font-bold font-regular">{{ store.total }} €</div>
       </div>
       <div v-if="store.paymentType === PaymentType.One">
-        <p>à régler en <strong>1</strong> fois :</p>
+        <p>en chèque, à régler en <strong>1</strong> fois :</p>
         <p class="pl-1 mt-2 text-lg">
           Totalité le <strong>15/10/{{ nextYear }}</strong
           >.
@@ -129,7 +129,7 @@ const handleEditInformations = () =>
       </div>
 
       <div v-else>
-        à régler en <strong>3</strong> fois :
+        <p>en chèque, à régler en <strong>3</strong> fois :</p>
 
         <ul class="pl-1 mt-2 text-lg list-inside">
           <li>
