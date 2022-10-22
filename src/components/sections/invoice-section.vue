@@ -167,12 +167,9 @@ const exportToPDF = () => {
                 class="text-stone-600"
               >
                 <td>
-                  <div v-if="store.checkedClasses.includes(classItem.id)">
-                    <CheckSquare />
-                  </div>
-                  <div v-else>
-                    <Square />
-                  </div>
+                  <display-check
+                    :evaluate="store.checkedClasses.includes(classItem.id)"
+                  />
                 </td>
                 <td>{{ classItem.label }}</td>
                 <td>{{ classItem.details }}</td>
