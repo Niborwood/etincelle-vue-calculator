@@ -100,16 +100,16 @@ export const useAppStore = defineStore("app", () => {
   const isAnimating = ref(false);
   const isInformationFormValid = ref(false);
   const formValues = ref<FormValues>({
-    name: "Robin",
-    surname: "Souriau",
-    birthday: "1993/01/06",
-    resp_name: "Marine Buron",
-    phone: "0620312364",
-    resp_phone: "0620312364",
-    resp_email: "robin.souriau@gmail.com",
-    address: "4 rue Louis Jouvet",
-    zipcode: "93160",
-    city: "Noisy le Grand",
+    name: import.meta.env.PROD ? "" : "Robin",
+    surname: import.meta.env.PROD ? "" : "Souriau",
+    birthday: import.meta.env.PROD ? "" : "1993/01/06",
+    resp_name: import.meta.env.PROD ? "" : "Marine Buron",
+    phone: import.meta.env.PROD ? "" : "0620312364",
+    resp_phone: import.meta.env.PROD ? "" : "0620312364",
+    resp_email: import.meta.env.PROD ? "" : "robin.souriau@gmail.com",
+    address: import.meta.env.PROD ? "" : "4 rue Louis Jouvet",
+    zipcode: import.meta.env.PROD ? "" : "93160",
+    city: import.meta.env.PROD ? "" : "Noisy le Grand",
   });
   const areRulesChecked = ref(false);
 
