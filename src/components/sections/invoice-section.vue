@@ -5,6 +5,7 @@ import { Download } from "lucide-vue-next";
 import VueHtml2pdf from "html2pdf.js";
 import { useAppStore } from "@/stores/AppStore";
 import { Square, CheckSquare } from "lucide-vue-next";
+import { DisplayCheck } from "@/components/ui";
 import { Classes } from "@/definitions/app.d";
 
 const store = useAppStore();
@@ -138,12 +139,9 @@ const exportToPDF = () => {
                 class="text-stone-600"
               >
                 <td class="px-2 py-0.5">
-                  <div v-if="store.checkedClasses.includes(classItem.id)">
-                    <CheckSquare />
-                  </div>
-                  <div v-else>
-                    <Square />
-                  </div>
+                  <display-check
+                    :evaluate="store.checkedClasses.includes(classItem.id)"
+                  />
                 </td>
                 <td>{{ classItem.label }}</td>
                 <td>{{ classItem.details }}</td>
@@ -204,6 +202,37 @@ const exportToPDF = () => {
             <p class="italic text-stone-400">
               (cochez la ou les cases correspondantes)
             </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2">
+          <div>
+            <div class="text-slate-600">
+              <span class="text-lg text-stone-900">Nombre de cours :</span>
+              <span class="pl-2 uppercase">{{
+                store.checkedClasses.length
+              }}</span>
+            </div>
+            <div class="text-slate-600">
+              <span class="text-lg text-stone-900"
+                >Total des cours pour l'année :</span
+              >
+              <span class="pl-2 uppercase">{{ store.total }} €</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-slate-600">
+              <span class="text-lg text-stone-900">Nombre de cours :</span>
+              <span class="pl-2 uppercase">{{
+                store.checkedClasses.length
+              }}</span>
+            </div>
+            <div class="text-slate-600">
+              <span class="text-lg text-stone-900"
+                >Total des cours pour l'année :</span
+              >
+              <span class="pl-2 uppercase">{{ store.total }} €</span>
+            </div>
           </div>
         </div>
       </div>
