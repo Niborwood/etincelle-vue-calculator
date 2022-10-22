@@ -112,14 +112,22 @@ export const useAppStore = defineStore("app", () => {
   });
   const areRulesChecked = ref(false);
 
-  const handleFormStep = (step: "next" | "prev") => {
+  const handleFormStep = ({
+    step,
+    jumpTo,
+  }: {
+    step?: "next" | "prev";
+    jumpTo?: FormStep;
+  }) => {
     // Check if any condition is disabling next action (see computed isNextButtonDisabled below)
     if (step === "next" && isNextButtonDisabled.value) return;
 
     // Else, update form step with animation trigger and direction (prev or next)
     isAnimating.value = true;
 
-    if (step === "next") {
+    if (jumpTo) {
+      formStep.value = jumpTo;
+    } else if (step === "next") {
       slideDirection.value = "next";
       formStep.value++;
     } else {
@@ -185,7 +193,7 @@ export const useAppStore = defineStore("app", () => {
   // Validation
   const handleValidInformationsSubmit = () => {
     isInformationFormValid.value = true;
-    handleFormStep("next");
+    handleFormStep({ step: "next" });
   };
 
   const handleInvalidInformationsSubmit = () => {

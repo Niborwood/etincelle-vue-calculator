@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { TitleForm } from "@/components/ui";
 import { useAppStore } from "@/stores/AppStore";
-import { PaymentType } from "@/definitions/app.d";
+import { FormStep, PaymentType } from "@/definitions/app.d";
 
-import { MapPin, Phone, Calendar, User } from "lucide-vue-next";
+import { MapPin, Phone, Calendar, User, Edit } from "lucide-vue-next";
 
 const store = useAppStore();
 const nextYear = new Date().getFullYear() + 1;
+const handleEditInformations = () =>
+  store.handleFormStep({ jumpTo: FormStep.Informations });
 </script>
 
 <template>
@@ -70,7 +72,7 @@ const nextYear = new Date().getFullYear() + 1;
           </div>
         </div>
       </div>
-      <div class="space-y-2">
+      <div class="space-y-8">
         <!-- Cours choisis -->
         <div>
           <div
@@ -87,7 +89,13 @@ const nextYear = new Date().getFullYear() + 1;
             }}
           </div>
         </div>
-        <!-- Total de l'année -->
+        <!-- Edit -->
+        <button
+          class="flex items-center gap-2 underline"
+          v-on:click="handleEditInformations"
+        >
+          <Edit /> Modifier ces informations
+        </button>
       </div>
       <!-- Règlement -->
     </div>

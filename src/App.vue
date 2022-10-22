@@ -18,7 +18,7 @@ const handleNextStep = () => {
   if (store.formStep === FormStep.Informations)
     return submitForm("informations");
 
-  store.handleFormStep("next");
+  store.handleFormStep({ step: "next" });
 };
 </script>
 
@@ -27,7 +27,7 @@ const handleNextStep = () => {
     class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 font-medium font-quicksand text-stone-700"
   >
     <header>
-      <h1 class="font-bold text-7xl lg:w-2/3 m-auto">
+      <h1 class="m-auto font-bold text-7xl lg:w-2/3">
         École de Danse Étincelle
       </h1>
     </header>
@@ -110,7 +110,7 @@ const handleNextStep = () => {
             <button
               type="button"
               class="flex flex-row-reverse items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
-              @click="() => store.handleFormStep('prev')"
+              @click="() => store.handleFormStep({ step: 'prev' })"
               v-if="store.formStep > FormStep.Initial"
             >
               Précédent <ArrowLeft :size="28" />
