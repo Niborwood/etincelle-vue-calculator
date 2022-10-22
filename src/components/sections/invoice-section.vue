@@ -3,6 +3,8 @@ import { TitleForm } from "@/components/ui";
 import { Download } from "lucide-vue-next";
 import VueHtml2pdf from "html2pdf.js";
 import { useAppStore } from "@/stores/AppStore";
+import { Square, CheckSquare } from "lucide-vue-next";
+import { Classes } from "@/definitions/app.d";
 
 const store = useAppStore();
 
@@ -60,11 +62,11 @@ const exportToPDF = () => {
         <div class="">
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Nom :</span>
-            {{ store.formValues.surname }}
+            <span class="pl-2 uppercase">{{ store.formValues.surname }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Prénom :</span>
-            {{ store.formValues.name }}
+            <span class="pl-2 uppercase">{{ store.formValues.name }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Date de naissance :</span>
@@ -74,31 +76,37 @@ const exportToPDF = () => {
             <span class="text-lg text-stone-900"
               >Nom du responsable légal :</span
             >
-            {{ store.formValues.resp_name }}
+            <span class="pl-2 uppercase">{{ store.formValues.resp_name }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900"
               >Portable du responsable légal :</span
             >
-            {{ store.formValues.resp_phone }}
+            <span class="pl-2 uppercase">{{
+              store.formValues.resp_phone
+            }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Portable de l'élève :</span>
-            {{ store.formValues.phone }}
+            <span class="pl-2 uppercase">{{ store.formValues.phone }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900"
               >Mail du responsable légal :</span
             >
-            {{ store.formValues.resp_email }}
+            <span class="pl-2 uppercase">{{
+              store.formValues.resp_email
+            }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Adresse :</span>
-            {{ store.formValues.address }}
+            <span class="pl-2 uppercase">{{ store.formValues.address }}</span>
           </div>
           <div class="text-slate-600">
             <span class="text-lg text-stone-900">Ville :</span>
-            {{ store.formValues.zipcode }}, {{ store.formValues.city }}
+            <span class="pl-2 uppercase"
+              >{{ store.formValues.zipcode }}, {{ store.formValues.city }}</span
+            >
           </div>
         </div>
 
@@ -115,8 +123,87 @@ const exportToPDF = () => {
           </div>
 
           <!-- Street & Lyrical -->
+          <div class="">
+            <p class="italic font-bold">
+              Street Jazz et Lyrical Jazz avec Marine Buron :
+            </p>
+            <table class="w-full table-fixed">
+              <tr
+                v-for="classItem in store.classesItems.filter(
+                  (ci) =>
+                    ![Classes.Concours13, Classes.AtelierChore].includes(ci.id)
+                )"
+                :key="classItem.id"
+                class="text-stone-600"
+              >
+                <td class="px-2 py-0.5">
+                  <div v-if="store.checkedClasses.includes(classItem.id)">
+                    <CheckSquare />
+                  </div>
+                  <div v-else>
+                    <Square />
+                  </div>
+                </td>
+                <td>{{ classItem.label }}</td>
+                <td>{{ classItem.details }}</td>
+                <td>{{ classItem.day }}</td>
+                <td>{{ classItem.hours }}</td>
+                <td>{{ classItem.room }}</td>
+                <td>{{ classItem.price }} €</td>
+              </tr>
+            </table>
+          </div>
 
           <!-- Lyrical & Modern Jazz -->
+          <div>
+            <p class="italic font-bold">
+              Lyrical Jazz et Modern'Jazz avec Marine Buron :
+            </p>
+            <table class="w-full table-fixed">
+              <tr
+                v-for="classItem in store.classesItems.filter((ci) =>
+                  [Classes.Concours13, Classes.AtelierChore].includes(ci.id)
+                )"
+                :key="classItem.id"
+                class="text-stone-600"
+              >
+                <td>
+                  <div v-if="store.checkedClasses.includes(classItem.id)">
+                    <CheckSquare />
+                  </div>
+                  <div v-else>
+                    <Square />
+                  </div>
+                </td>
+                <td>{{ classItem.label }}</td>
+                <td>{{ classItem.details }}</td>
+                <td>{{ classItem.day }}</td>
+                <td>{{ classItem.hours }}</td>
+                <td>{{ classItem.room }}</td>
+                <td>{{ classItem.price }} €</td>
+              </tr>
+            </table>
+          </div>
+
+          <p
+            class="text-sm italic text-center text-orange-500 underline underline-offset-2"
+          >
+            Ces cours se déroulent à l’espace Métiss’âge - 16 rue Jean Monnet,
+            Bussy-Saint-Georges
+          </p>
+        </div>
+
+        <!-- Récapitulatif de l'inscription -->
+        <div>
+          <!-- Titre -->
+          <div class="flex items-center gap-2 mb-2">
+            <p class="text-2xl italic font-bold text-orange-900">
+              Récapitulatif de l'inscription
+            </p>
+            <p class="italic text-stone-400">
+              (cochez la ou les cases correspondantes)
+            </p>
+          </div>
         </div>
       </div>
     </div>
