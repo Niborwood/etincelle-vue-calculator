@@ -94,7 +94,7 @@ export const useAppStore = defineStore("app", () => {
 
   // Form State
   const formStep = ref<FormStep>(
-    import.meta.env.PROD ? FormStep.Initial : FormStep.Confirmation
+    import.meta.env.PROD ? FormStep.Initial : FormStep.Invoice
   );
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
@@ -105,6 +105,7 @@ export const useAppStore = defineStore("app", () => {
     birthday: "1993/01/06",
     resp_name: "Marine Buron",
     phone: "0620312364",
+    resp_phone: "0686454498",
     resp_email: "robin.souriau@gmail.com",
     address: "4 rue Louis Jouvet",
     zipcode: "93160",

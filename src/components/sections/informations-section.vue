@@ -58,6 +58,17 @@ const store = useAppStore();
         v-model="store.formValues.phone"
       />
       <FormKit
+        type="tel"
+        name="phone"
+        label="Numéro de téléphone du responsable légal"
+        validation="required|matches:/^[0-9]{10}$/"
+        :validation-messages="{
+          matches:
+            'Le numéro de téléphone doit être au format : xx-xx-xx-xx-xx',
+        }"
+        v-model="store.formValues.resp_phone"
+      />
+      <FormKit
         type="email"
         name="resp_email"
         label="Mail du responsable légal"

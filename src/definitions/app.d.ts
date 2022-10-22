@@ -24,6 +24,7 @@ type FormValues = {
   birthday: string;
   resp_name: string;
   phone: string;
+  resp_phone: string;
   resp_email: string;
   address: string;
   zipcode: string;
