@@ -218,17 +218,18 @@ const exportToPDF = () => {
             </div>
           </div>
           <div>
-            <div class="text-slate-600">
-              <span class="text-lg text-stone-900">Nombre de cours :</span>
-              <span class="pl-2 uppercase">{{
-                store.checkedClasses.length
-              }}</span>
-            </div>
-            <div class="text-slate-600">
-              <span class="text-lg text-stone-900"
-                >Total des cours pour l'année :</span
+            <div class="flex items-center">
+              <display-check :evaluate="!!store.locationDiscount" />
+              <span class="text-lg"
+                >-10% pour les habitants de Marne et Gondoire</span
               >
-              <span class="pl-2 uppercase">{{ store.total }} €</span>
+            </div>
+            <div class="flex items-center">
+              <display-check :evaluate="store.checkedClasses.length > 1" />
+              <span class="text-lg"
+                >-5% sur le montant des cours si l’adhérent en suit
+                plusieurs</span
+              >
             </div>
           </div>
         </div>
