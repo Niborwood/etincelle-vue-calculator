@@ -105,7 +105,7 @@ export const useAppStore = defineStore("app", () => {
     birthday: "1993/01/06",
     resp_name: "Marine Buron",
     phone: "0620312364",
-    resp_phone: "0686454498",
+    resp_phone: "0620312364",
     resp_email: "robin.souriau@gmail.com",
     address: "4 rue Louis Jouvet",
     zipcode: "93160",
