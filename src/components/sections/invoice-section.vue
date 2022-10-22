@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { TitleForm } from "@/components/ui";
 import { Download } from "lucide-vue-next";
+// @ts-ignore
 import VueHtml2pdf from "html2pdf.js";
 import { useAppStore } from "@/stores/AppStore";
 import { Square, CheckSquare } from "lucide-vue-next";
