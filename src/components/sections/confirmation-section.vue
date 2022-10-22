@@ -113,13 +113,15 @@ const nextYear = new Date().getFullYear() + 1;
         <div class="text-5xl font-bold font-regular">{{ store.total }} €</div>
       </div>
       <div v-if="store.paymentType === PaymentType.One">
-        à payer en <strong>1</strong> fois le
-        <strong>15/10/{{ nextYear }}</strong
-        >.
+        <p>à régler en <strong>1</strong> fois :</p>
+        <p class="pl-1 mt-2 text-lg">
+          Totalité le <strong>15/10/{{ nextYear }}</strong
+          >.
+        </p>
       </div>
 
       <div v-else>
-        à payer en <strong>3</strong> fois :
+        à régler en <strong>3</strong> fois :
 
         <ul class="pl-1 mt-2 text-lg list-inside">
           <li>
