@@ -14,7 +14,7 @@ const store = useAppStore();
     </p>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <div
       v-for="input in store.classesItems"
       :key="input.id"
@@ -42,10 +42,10 @@ const store = useAppStore();
         :for="input.id"
       >
         <div class="flex-1">
-          <h3 class="text-2xl font-bold">{{ input.label }}</h3>
-          <div class="">{{ input.price }} €</div>
+          <h3 class="text-4xl font-bold">{{ input.label }}</h3>
+          <div class="text-lg">{{ input.price }} €</div>
         </div>
-        <div class="text-sm">
+        <div class="text-lg">
           <div>{{ input.details }}</div>
           <div>{{ input.day }}, {{ input.hours }}</div>
           <div class="text-stone-900/60">{{ input.room }}</div>
