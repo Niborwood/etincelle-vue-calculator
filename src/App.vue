@@ -39,14 +39,14 @@ const handleNextStep = () => {
           enter-active-class="duration-700 ease-out"
           :enter-from-class="
             store.slideDirection === 'next'
-              ? 'transform opacity-0 translate-x-full'
-              : 'transform opacity-0 -translate-x-full'
+              ? 'transform opacity-0'
+              : 'transform opacity-0'
           "
           enter-to-class="translate-x-0 opacity-100"
           :leave-active-class="
             store.slideDirection === 'next'
-              ? 'duration-700 ease-in -translate-x-full'
-              : 'duration-700 ease-in translate-x-full'
+              ? 'duration-700 ease-in'
+              : 'duration-700 ease-in'
           "
           leave-from-class="opacity-100"
           leave-to-class="transform opacity-0"

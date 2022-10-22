@@ -9,7 +9,7 @@ const store = useAppStore();
 <template>
   <div class="mb-4">
     <title-form>Quels sont les cours choisis par l'élève ?</title-form>
-    <p v-show="!store.checkedClasses.length">
+    <p class="text-xl" v-show="!store.checkedClasses.length">
       Merci de sélectionner au moins un cours.
     </p>
   </div>

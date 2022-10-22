@@ -128,6 +128,7 @@ export const useAppStore = defineStore("app", () => {
     }
 
     isAnimating.value = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Computed
