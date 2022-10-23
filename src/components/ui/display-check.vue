@@ -3,6 +3,7 @@ import { Square, CheckSquare } from "lucide-vue-next";
 
 export interface DisplayCheckProps {
   evaluate: boolean;
+  size?: number;
 }
 
 const props = defineProps<DisplayCheckProps>();
@@ -10,9 +11,9 @@ const props = defineProps<DisplayCheckProps>();
 
 <template>
   <div v-if="props.evaluate">
-    <CheckSquare />
+    <CheckSquare :size="size ?? 14" />
   </div>
   <div v-else>
-    <Square />
+    <Square :size="size ?? 14" />
   </div>
 </template>

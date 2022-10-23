@@ -37,7 +37,7 @@ const exportToPDF = () => {
       atque dolorem numquam dolorum saepe rerum!
     </p>
 
-    <div class="p-8 text-lg font-bold bg-stone-200/80 rounded-xl">
+    <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
       <p>Mairie de Bussy Saint Georges</p>
       <p>Pl. de la Mairie, 77600 Bussy-Saint-Georges</p>
     </div>
@@ -50,12 +50,12 @@ const exportToPDF = () => {
     </button>
 
     <div class="p-2 border">
-      <div id="invoice" class="p-2">
+      <div id="invoice" class="p-2 text-sm">
         <div class="flex gap-2 mb-8 text-7xl">Ecole de danse Etincelle</div>
 
         <!-- Informations -->
         <div class="flex items-center gap-2 mb-2">
-          <p class="text-2xl text-orange-900 uppercase">
+          <p class="text-xl text-orange-900 uppercase">
             Bulletin de pré-inscription web
           </p>
           <p class="italic text-stone-400">(à remplir en majuscules)</p>
@@ -63,49 +63,43 @@ const exportToPDF = () => {
 
         <div class="">
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Nom :</span>
+            <span class="text-stone-900">Nom :</span>
             <span class="pl-2 uppercase">{{ store.formValues.surname }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Prénom :</span>
+            <span class="text-stone-900">Prénom :</span>
             <span class="pl-2 uppercase">{{ store.formValues.name }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Date de naissance :</span>
+            <span class="text-stone-900">Date de naissance :</span>
             {{ new Date(store.formValues.birthday).toLocaleDateString() }}
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900"
-              >Nom du responsable légal :</span
-            >
+            <span class="text-stone-900">Nom du responsable légal :</span>
             <span class="pl-2 uppercase">{{ store.formValues.resp_name }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900"
-              >Portable du responsable légal :</span
-            >
+            <span class="text-stone-900">Portable du responsable légal :</span>
             <span class="pl-2 uppercase">{{
               store.formValues.resp_phone
             }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Portable de l'élève :</span>
+            <span class="text-stone-900">Portable de l'élève :</span>
             <span class="pl-2 uppercase">{{ store.formValues.phone }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900"
-              >Mail du responsable légal :</span
-            >
+            <span class="text-stone-900">Mail du responsable légal :</span>
             <span class="pl-2 uppercase">{{
               store.formValues.resp_email
             }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Adresse :</span>
+            <span class="text-stone-900">Adresse :</span>
             <span class="pl-2 uppercase">{{ store.formValues.address }}</span>
           </div>
           <div class="text-slate-600">
-            <span class="text-lg text-stone-900">Ville :</span>
+            <span class="text-stone-900">Ville :</span>
             <span class="pl-2 uppercase"
               >{{ store.formValues.zipcode }}, {{ store.formValues.city }}</span
             >
@@ -116,7 +110,7 @@ const exportToPDF = () => {
         <div class="my-4 space-y-1">
           <!-- Titre -->
           <div class="flex items-center gap-2 mb-2">
-            <p class="text-2xl italic font-bold text-orange-900">
+            <p class="text-xl italic font-bold text-orange-900">
               Cours choisis
             </p>
             <p class="italic text-stone-400">
@@ -193,7 +187,7 @@ const exportToPDF = () => {
         <div>
           <!-- Titre -->
           <div class="flex items-center gap-2 mb-2">
-            <p class="text-2xl italic font-bold text-orange-900">
+            <p class="text-xl italic font-bold text-orange-900">
               Récapitulatif de l'inscription
             </p>
             <p class="italic text-stone-400">
@@ -205,28 +199,24 @@ const exportToPDF = () => {
         <div class="grid grid-cols-2">
           <div>
             <div class="text-slate-600">
-              <span class="text-lg text-stone-900">Nombre de cours :</span>
+              <span class="text-stone-900">Nombre de cours :</span>
               <span class="pl-2 uppercase">{{
                 store.checkedClasses.length
               }}</span>
             </div>
             <div class="text-slate-600">
-              <span class="text-lg text-stone-900"
-                >Total des cours pour l'année :</span
-              >
+              <span class="text-stone-900">Total des cours pour l'année :</span>
               <span class="pl-2 uppercase">{{ store.total }} €</span>
             </div>
           </div>
           <div>
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
               <display-check :evaluate="!!store.locationDiscount" />
-              <span class="text-lg"
-                >-10% pour les habitants de Marne et Gondoire</span
-              >
+              <span class="">-10% pour les habitants de Marne et Gondoire</span>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
               <display-check :evaluate="store.checkedClasses.length > 1" />
-              <span class="text-lg"
+              <span class=""
                 >-5% sur le montant des cours si l’adhérent en suit
                 plusieurs</span
               >
