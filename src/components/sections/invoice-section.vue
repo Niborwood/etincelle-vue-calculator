@@ -13,7 +13,7 @@ const exportToPDF = () => {
   const element = document.getElementById("invoice");
   const options = {
     margin: 0,
-    filename: "invoice.pdf",
+    filename: `${store.formValues.name} ${store.formValues.surname} - Pre-inscription Etincelle.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
