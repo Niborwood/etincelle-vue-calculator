@@ -121,7 +121,7 @@ const nextYear = new Date().getFullYear() + 1;
 
           <!-- Street & Lyrical -->
           <div class="">
-            <p class="italic font-bold">
+            <p class="mb-1 italic font-bold">
               Street Jazz et Lyrical Jazz avec Marine Buron :
             </p>
             <table class="w-full text-xs table-fixed">
@@ -150,7 +150,7 @@ const nextYear = new Date().getFullYear() + 1;
 
           <!-- Lyrical & Modern Jazz -->
           <div>
-            <p class="italic font-bold">
+            <p class="mb-1 italic font-bold">
               Lyrical Jazz et Modern'Jazz avec Marine Buron :
             </p>
             <table class="w-full text-xs table-fixed">
@@ -247,7 +247,7 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
 
         <!-- Payment -->
-        <div>
+        <div class="mt-1">
           <!-- One time -->
           <div class="grid grid-cols-2 px-2 text-sm">
             <div class="flex items-center gap-2">
@@ -265,7 +265,7 @@ const nextYear = new Date().getFullYear() + 1;
                 }}
                 (total)
               </div>
-              <div>Le 15/09/2019</div>
+              <div>Le 15/09/{{ nextYear }}</div>
             </div>
           </div>
 
@@ -366,6 +366,18 @@ const nextYear = new Date().getFullYear() + 1;
               Signature du responsable légal :
             </p>
           </div>
+        </div>
+
+        <div
+          class="py-1 mt-8 text-xs font-semibold text-center bg-orange-500 text-stone-50"
+        >
+          <p>Ecole de danse Etincelle, Association Loi 1901 n°W932007295</p>
+          <p>n°siret : 84066826300014 - APE : 8552Z</p>
+          <p>Contact : marine@danse-etincelle.fr</p>
+          <p>
+            Etincelle, Mairie de Bussy-saint-Georges, 1 place de la mairie -
+            77600 Bussy-saint-Georges
+          </p>
         </div>
       </div>
     </div>
