@@ -51,7 +51,7 @@ const nextYear = new Date().getFullYear() + 1;
       <Download /> Télécharger le bulletin de&nbsp;pré-inscription
     </button>
 
-    <div class="p-2 border">
+    <div class="hidden p-2 border">
       <!-- START OF INVOICE -->
       <div id="invoice" class="relative p-2 overflow-hidden text-sm">
         <!-- Top right decoration -->
