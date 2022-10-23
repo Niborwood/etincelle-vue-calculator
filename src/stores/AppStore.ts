@@ -105,7 +105,7 @@ export const useAppStore = defineStore("app", () => {
     birthday: import.meta.env.PROD ? "" : "1993/01/06",
     resp_name: import.meta.env.PROD ? "" : "Marine Buron",
     phone: import.meta.env.PROD ? "" : "0620312364",
-    resp_phone: import.meta.env.PROD ? "" : "0620312364",
+    resp_phone: import.meta.env.PROD ? "" : "0686454498",
     resp_email: import.meta.env.PROD ? "" : "robin.souriau@gmail.com",
     address: import.meta.env.PROD ? "" : "4 rue Louis Jouvet",
     zipcode: import.meta.env.PROD ? "" : "93160",

@@ -11,9 +11,9 @@ const props = defineProps<DisplayCheckProps>();
 
 <template>
   <div v-if="props.evaluate">
-    <CheckSquare :size="size ?? 14" />
+    <CheckSquare :size="size ?? 12" />
   </div>
   <div v-else>
-    <Square :size="size ?? 14" />
+    <Square :size="size ?? 12" />
   </div>
 </template>

@@ -17,7 +17,7 @@ const exportToPDF = () => {
     filename: `${store.formValues.name} ${store.formValues.surname} - Pre-inscription Etincelle.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
   };
   VueHtml2pdf().from(element).set(options).save();
 };
@@ -58,11 +58,11 @@ const nextYear = new Date().getFullYear() + 1;
         <div
           class="absolute rotate-[11deg] bg-yellow-200/50 -top-[720px] -right-[160px] w-[800px] h-[800px]"
         />
-        <div class="relative z-20 flex gap-2 mb-8 text-7xl">
+        <div class="relative z-20 flex gap-2 text-7xl">
           <img
             :src="logoTitle"
-            alt="Ecole de Danse Etincelle
-        "
+            alt="Ecole de Danse Etincelle"
+            class="w-[500px] ml-6"
           />
         </div>
 
@@ -74,7 +74,7 @@ const nextYear = new Date().getFullYear() + 1;
           <p class="italic text-stone-400">(à remplir en majuscules)</p>
         </div>
 
-        <div class="">
+        <div class="pl-4">
           <div class="text-slate-600">
             <span class="text-stone-900">Nom :</span>
             <span class="pl-2 uppercase">{{ store.formValues.surname }}</span>
@@ -132,7 +132,7 @@ const nextYear = new Date().getFullYear() + 1;
           </div>
 
           <!-- Street & Lyrical -->
-          <div class="">
+          <div class="pl-4">
             <p class="mb-1 italic font-bold">
               Street Jazz et Lyrical Jazz avec Marine Buron :
             </p>
@@ -151,7 +151,11 @@ const nextYear = new Date().getFullYear() + 1;
                   />
                 </td>
                 <td>{{ classItem.label }}</td>
-                <td>{{ classItem.details }}</td>
+                <td>
+                  {{
+                    classItem.id === Classes.Avances ? "---" : classItem.details
+                  }}
+                </td>
                 <td>{{ classItem.day }}</td>
                 <td>{{ classItem.hours }}</td>
                 <td>{{ classItem.room }}</td>
@@ -161,7 +165,7 @@ const nextYear = new Date().getFullYear() + 1;
           </div>
 
           <!-- Lyrical & Modern Jazz -->
-          <div>
+          <div class="pl-4">
             <p class="mb-1 italic font-bold">
               Lyrical Jazz et Modern'Jazz avec Marine Buron :
             </p>
@@ -210,7 +214,7 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
 
         <!-- Price details -->
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 pl-4">
           <div>
             <div class="text-slate-600">
               <span class="text-stone-900">Nombre de cours :</span>
@@ -259,7 +263,7 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
 
         <!-- Payment -->
-        <div class="mt-1">
+        <div class="pl-4 mt-1">
           <!-- One time -->
           <div class="grid grid-cols-2 px-2 text-sm">
             <div class="flex items-center gap-2">
@@ -337,7 +341,7 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
 
         <!-- Medical -->
-        <div class="flex items-center w-4/5 gap-4 m-auto mt-2 text-sm">
+        <div class="flex items-center gap-4 pl-4 m-auto mt-2 text-sm">
           <div class="flex items-start flex-1 gap-2">
             <display-check :evaluate="false" /> Le certificat médical de non
             contre-indication à la pratique de la danse a été transmis avec ce
@@ -369,7 +373,7 @@ const nextYear = new Date().getFullYear() + 1;
               <span class="font-semibold underline underline-offset-2"
                 >Le :</span
               >
-              ..............
+              {{ new Date().toLocaleDateString() }}
             </p>
           </div>
           <div></div>
