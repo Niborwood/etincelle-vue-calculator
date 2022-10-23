@@ -4,9 +4,8 @@ import { Download } from "lucide-vue-next";
 // @ts-ignore
 import VueHtml2pdf from "html2pdf.js";
 import { useAppStore } from "@/stores/AppStore";
-import { Square, CheckSquare } from "lucide-vue-next";
 import { DisplayCheck } from "@/components/ui";
-import { Classes } from "@/definitions/app.d";
+import { Classes, PaymentType } from "@/definitions/app.d";
 
 const store = useAppStore();
 
@@ -21,6 +20,8 @@ const exportToPDF = () => {
   };
   VueHtml2pdf().from(element).set(options).save();
 };
+
+const nextYear = new Date().getFullYear() + 1;
 </script>
 
 <template>
@@ -54,7 +55,7 @@ const exportToPDF = () => {
         <div class="flex gap-2 mb-8 text-7xl">Ecole de danse Etincelle</div>
 
         <!-- Informations -->
-        <div class="flex items-center gap-2 mb-2">
+        <div class="flex items-center gap-2">
           <p class="text-xl text-orange-900 uppercase">
             Bulletin de pré-inscription web
           </p>
@@ -107,9 +108,9 @@ const exportToPDF = () => {
         </div>
 
         <!-- Cours choisis -->
-        <div class="my-4 space-y-1">
+        <div class="mt-1">
           <!-- Titre -->
-          <div class="flex items-center gap-2 mb-2">
+          <div class="flex items-center gap-2">
             <p class="text-xl italic font-bold text-orange-900">
               Cours choisis
             </p>
@@ -123,7 +124,7 @@ const exportToPDF = () => {
             <p class="italic font-bold">
               Street Jazz et Lyrical Jazz avec Marine Buron :
             </p>
-            <table class="w-full table-fixed">
+            <table class="w-full text-xs table-fixed">
               <tr
                 v-for="classItem in store.classesItems.filter(
                   (ci) =>
@@ -132,7 +133,7 @@ const exportToPDF = () => {
                 :key="classItem.id"
                 class="text-stone-600"
               >
-                <td class="px-2 py-0.5">
+                <td class="w-8">
                   <display-check
                     :evaluate="store.checkedClasses.includes(classItem.id)"
                   />
@@ -152,7 +153,7 @@ const exportToPDF = () => {
             <p class="italic font-bold">
               Lyrical Jazz et Modern'Jazz avec Marine Buron :
             </p>
-            <table class="w-full table-fixed">
+            <table class="w-full text-xs table-fixed">
               <tr
                 v-for="classItem in store.classesItems.filter((ci) =>
                   [Classes.Concours13, Classes.AtelierChore].includes(ci.id)
@@ -160,7 +161,7 @@ const exportToPDF = () => {
                 :key="classItem.id"
                 class="text-stone-600"
               >
-                <td>
+                <td class="w-8">
                   <display-check
                     :evaluate="store.checkedClasses.includes(classItem.id)"
                   />
@@ -196,6 +197,7 @@ const exportToPDF = () => {
           </div>
         </div>
 
+        <!-- Price details -->
         <div class="grid grid-cols-2">
           <div>
             <div class="text-slate-600">
@@ -243,6 +245,104 @@ const exportToPDF = () => {
             </div>
           </div>
         </div>
+
+        <!-- Payment -->
+        <div>
+          <!-- One time -->
+          <div class="grid grid-cols-2 px-2 text-sm">
+            <div class="flex items-center gap-2">
+              <display-check
+                :evaluate="store.paymentType === PaymentType.One"
+              />
+              Paiement en une fois :
+            </div>
+            <div class="grid grid-cols-2">
+              <div class="text-stone-600">
+                {{
+                  store.paymentType === PaymentType.One
+                    ? `${store.total} €`
+                    : "..."
+                }}
+                (total)
+              </div>
+              <div>Le 15/09/2019</div>
+            </div>
+          </div>
+
+          <!-- Three times -->
+          <div class="grid items-start grid-cols-2 px-2">
+            <div class="flex gap-2">
+              <display-check
+                :evaluate="store.paymentType === PaymentType.Three"
+              />
+              Paiement en trois fois :
+            </div>
+            <div>
+              <div class="grid grid-cols-2">
+                <div class="text-stone-600">
+                  {{
+                    store.paymentType === PaymentType.Three
+                      ? `${store.payments.first} €`
+                      : "..."
+                  }}
+                  (1/3 total + adhésion)
+                </div>
+                <div>Le 15/09/2019</div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div class="text-stone-600">
+                  {{
+                    store.paymentType === PaymentType.Three
+                      ? `${store.payments.second} €`
+                      : "..."
+                  }}
+                  (1/3 total + costumes)
+                </div>
+                <div>Le 15/09/2019</div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div class="text-stone-600">
+                  {{
+                    store.paymentType === PaymentType.Three
+                      ? `${store.payments.third} €`
+                      : "..."
+                  }}
+                  (reste)
+                </div>
+                <div>Le 15/09/2019</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Year total -->
+          <div class="mt-2 font-bold text-center">
+            <div>Total de l'année : {{ store.total }} €</div>
+            <div class="text-xs font-normal">
+              NB : pour les classes concours, le prix des inscriptions aux
+              concours n’est pas inclus dans le total de l'année.
+            </div>
+          </div>
+        </div>
+
+        <!-- Medical -->
+        <div class="flex items-center w-4/5 gap-4 m-auto mt-2 text-sm">
+          <div class="flex items-start flex-1 gap-2">
+            <display-check :evaluate="false" /> Le certificat médical de non
+            contre-indication à la pratique de la danse a été transmis avec ce
+            dossier
+          </div>
+          <div>ou</div>
+          <div class="flex items-start flex-1 gap-2">
+            <display-check :evaluate="false" /> Le certificat médical de non
+            contre-indication à la pratique de la danse sera remis en main
+            propre avant le 01/10/{{ nextYear }}
+          </div>
+        </div>
+        <p
+          class="text-sm italic text-center text-orange-500 underline underline-offset-2"
+        >
+          Les cours reprennent à partir du 15 septembre {{ nextYear }}
+        </p>
       </div>
     </div>
   </div>

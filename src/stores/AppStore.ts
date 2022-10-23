@@ -202,7 +202,7 @@ export const useAppStore = defineStore("app", () => {
   };
 
   // Confirmation
-  const paymentType = ref<PaymentType>(PaymentType.One);
+  const paymentType = ref<PaymentType>(PaymentType.Three);
   const payments = computed(() => {
     const first = Math.round(total.value / 3 + MEMBERSHIP);
     const second = Math.round(total.value / 3 + costumeTotal.value);
