@@ -6,6 +6,7 @@ import VueHtml2pdf from "html2pdf.js";
 import { useAppStore } from "@/stores/AppStore";
 import { DisplayCheck } from "@/components/ui";
 import { Classes, PaymentType } from "@/definitions/app.d";
+import logoTitle from "@/assets/logo-title.png";
 
 const store = useAppStore();
 
@@ -52,7 +53,9 @@ const nextYear = new Date().getFullYear() + 1;
 
     <div class="p-2 border">
       <div id="invoice" class="p-2 text-sm">
-        <div class="flex gap-2 mb-8 text-7xl">Ecole de danse Etincelle</div>
+        <div class="flex gap-2 mb-8 text-7xl">
+          <img :src="logoTitle" alt="Ecole de Danse Etincelle" />
+        </div>
 
         <!-- Informations -->
         <div class="flex items-center gap-2">
