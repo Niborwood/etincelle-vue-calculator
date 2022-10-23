@@ -208,6 +208,26 @@ const exportToPDF = () => {
               <span class="text-stone-900">Total des cours pour l'année :</span>
               <span class="pl-2 uppercase">{{ store.total }} €</span>
             </div>
+            <div class="text-slate-600">
+              <span class="text-stone-900">Adhésion 35€ par élève :</span>
+              <span class="pl-2 uppercase">1</span>
+            </div>
+            <div class="text-slate-600">
+              <span class="text-stone-900"
+                >Budget Costumes par cours, 25€ x
+                <span class="pl-2 uppercase text-slate-600"
+                  >{{
+                    !store.checkedClasses.includes(Classes.AtelierChore)
+                      ? store.checkedClasses.length
+                      : store.checkedClasses.length - 1
+                  }}
+                </span>
+                =
+                <span class="pl-2 uppercase text-slate-600"
+                  >{{ store.costumeTotal }} €</span
+                >
+              </span>
+            </div>
           </div>
           <div>
             <div class="flex items-center gap-2">
