@@ -52,9 +52,18 @@ const nextYear = new Date().getFullYear() + 1;
     </button>
 
     <div class="p-2 border">
-      <div id="invoice" class="p-2 text-sm">
-        <div class="flex gap-2 mb-8 text-7xl">
-          <img :src="logoTitle" alt="Ecole de Danse Etincelle" />
+      <!-- START OF INVOICE -->
+      <div id="invoice" class="relative p-2 overflow-hidden text-sm">
+        <!-- Top right decoration -->
+        <div
+          class="absolute rotate-[11deg] bg-yellow-200/50 -top-[720px] -right-[160px] w-[800px] h-[800px]"
+        />
+        <div class="relative z-20 flex gap-2 mb-8 text-7xl">
+          <img
+            :src="logoTitle"
+            alt="Ecole de Danse Etincelle
+        "
+          />
         </div>
 
         <!-- Informations -->
