@@ -287,7 +287,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (1/3 total + adhésion)
                 </div>
-                <div>Le 15/09/2019</div>
+                <div>Le 15/09/{{ nextYear }}</div>
               </div>
               <div class="grid grid-cols-2">
                 <div class="text-stone-600">
@@ -298,7 +298,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (1/3 total + costumes)
                 </div>
-                <div>Le 15/09/2019</div>
+                <div>Le 01/11/{{ nextYear }}</div>
               </div>
               <div class="grid grid-cols-2">
                 <div class="text-stone-600">
@@ -309,7 +309,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (reste)
                 </div>
-                <div>Le 15/09/2019</div>
+                <div>Le 01/02/{{ nextYear + 1 }}</div>
               </div>
             </div>
           </div>
@@ -343,6 +343,30 @@ const nextYear = new Date().getFullYear() + 1;
         >
           Les cours reprennent à partir du 15 septembre {{ nextYear }}
         </p>
+
+        <!-- End, signature -->
+        <div class="grid grid-cols-3 mt-1">
+          <div class="ml-16">
+            <p>
+              <span class="font-semibold underline underline-offset-2"
+                >Fait à :</span
+              >
+              ............
+            </p>
+            <p>
+              <span class="font-semibold underline underline-offset-2"
+                >Le :</span
+              >
+              ..............
+            </p>
+          </div>
+          <div></div>
+          <div>
+            <p class="font-semibold underline underline-offset-2">
+              Signature du responsable légal :
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
