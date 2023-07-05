@@ -22,27 +22,37 @@ const exportToPDF = () => {
   VueHtml2pdf().from(element).set(options).save();
 };
 
-const nextYear = new Date().getFullYear() + 1;
+const currentYear = new Date().getFullYear();
+const isProd = import.meta.env.PROD;
 </script>
 
 <template>
   <title-form>Pré-inscription complète</title-form>
   <div class="space-y-4">
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui sequi minus,
-      vitae reiciendis cum tempore quis optio quia ipsa voluptatibus, accusamus
-      dolores iste. Similique sapiente saepe quas, animi, obcaecati, fugit a
-      repudiandae praesentium minus provident eos.
+      Merci d'avoir rempli le formulaire de pré-inscription. Vous pouvez
+      désormais cliquer sur le bouton
+      <strong>Télécharger le bulletin de pré-inscription</strong> pour recevoir
+      une version PDF des informations renseignées.
     </p>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates ut
-      atque dolorem numquam dolorum saepe rerum!
+      Il doit être accompagné du certificat médical de non contre-indication à
+      la pratique de la danse du danseur.
     </p>
+    <p>Ce fichier est à envoyer par mail à l'adresse suivante :</p>
 
     <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
-      <p>Mairie de Bussy Saint Georges</p>
-      <p>Pl. de la Mairie, 77600 Bussy-Saint-Georges</p>
+      <a href="mailto:ecole@danse-etincelle.fr" class="underline">
+        ecole@danse-etincelle.fr
+      </a>
     </div>
+
+    <p>
+      <strong>Important :</strong> nous ne conservons aucune donnée lors de
+      l'utilisation de ce site internet. Si vous quittez cette page sans
+      télécharger le bulletin de pré-inscription, il faudra compléter à nouveau
+      la procédure d'inscription.
+    </p>
     <button
       type="button"
       class="flex items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
@@ -51,7 +61,7 @@ const nextYear = new Date().getFullYear() + 1;
       <Download /> Télécharger le bulletin de&nbsp;pré-inscription
     </button>
 
-    <div class="hidden p-2 border">
+    <div class="p-2 border" :class="isProd ? 'hidden' : ''">
       <!-- START OF INVOICE -->
       <div id="invoice" class="relative p-2 overflow-hidden text-sm">
         <!-- Top right decoration -->
@@ -62,16 +72,15 @@ const nextYear = new Date().getFullYear() + 1;
           <img
             :src="logoTitle"
             alt="Ecole de Danse Etincelle"
-            class="w-[500px] ml-6"
+            class="w-[400px] ml-6"
           />
         </div>
 
         <!-- Informations -->
         <div class="flex items-center gap-2">
           <p class="text-xl text-orange-900 uppercase">
-            Bulletin de pré-inscription web
+            Bulletin d'inscription web
           </p>
-          <p class="italic text-stone-400">(à remplir en majuscules)</p>
         </div>
 
         <div class="pl-4">
@@ -144,6 +153,9 @@ const nextYear = new Date().getFullYear() + 1;
                 )"
                 :key="classItem.id"
                 class="text-stone-600"
+                :class="
+                  !store.checkedClasses.includes(classItem.id) && 'opacity-30'
+                "
               >
                 <td class="w-8">
                   <display-check
@@ -176,6 +188,9 @@ const nextYear = new Date().getFullYear() + 1;
                 )"
                 :key="classItem.id"
                 class="text-stone-600"
+                :class="
+                  !store.checkedClasses.includes(classItem.id) && 'opacity-30'
+                "
               >
                 <td class="w-8">
                   <display-check
@@ -265,7 +280,14 @@ const nextYear = new Date().getFullYear() + 1;
         <!-- Payment -->
         <div class="pl-4 mt-1">
           <!-- One time -->
-          <div class="grid grid-cols-2 px-2 text-sm">
+          <div
+            class="grid grid-cols-2 px-2 text-sm"
+            :class="
+              store.paymentType === PaymentType.One
+                ? 'opacity-100'
+                : 'opacity-30'
+            "
+          >
             <div class="flex items-center gap-2">
               <display-check
                 :evaluate="store.paymentType === PaymentType.One"
@@ -281,12 +303,19 @@ const nextYear = new Date().getFullYear() + 1;
                 }}
                 (total)
               </div>
-              <div>Le 15/09/{{ nextYear }}</div>
+              <div>Le 15/09/{{ currentYear }}</div>
             </div>
           </div>
 
           <!-- Three times -->
-          <div class="grid items-start grid-cols-2 px-2">
+          <div
+            class="grid items-start grid-cols-2 px-2"
+            :class="
+              store.paymentType === PaymentType.Three
+                ? 'opacity-100'
+                : 'opacity-30'
+            "
+          >
             <div class="flex gap-2">
               <display-check
                 :evaluate="store.paymentType === PaymentType.Three"
@@ -303,7 +332,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (1/3 total + adhésion)
                 </div>
-                <div>Le 15/09/{{ nextYear }}</div>
+                <div>Le 15/09/{{ currentYear }}</div>
               </div>
               <div class="grid grid-cols-2">
                 <div class="text-stone-600">
@@ -314,7 +343,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (1/3 total + costumes)
                 </div>
-                <div>Le 01/11/{{ nextYear }}</div>
+                <div>Le 01/11/{{ currentYear }}</div>
               </div>
               <div class="grid grid-cols-2">
                 <div class="text-stone-600">
@@ -325,7 +354,7 @@ const nextYear = new Date().getFullYear() + 1;
                   }}
                   (reste)
                 </div>
-                <div>Le 01/02/{{ nextYear + 1 }}</div>
+                <div>Le 01/02/{{ currentYear + 1 }}</div>
               </div>
             </div>
           </div>
@@ -351,13 +380,13 @@ const nextYear = new Date().getFullYear() + 1;
           <div class="flex items-start flex-1 gap-2">
             <display-check :evaluate="false" /> Le certificat médical de non
             contre-indication à la pratique de la danse sera remis en main
-            propre avant le 01/10/{{ nextYear }}
+            propre avant le 01/10/{{ currentYear }}
           </div>
         </div>
         <p
           class="text-sm italic text-center text-orange-500 underline underline-offset-2"
         >
-          Les cours reprennent à partir du 15 septembre {{ nextYear }}
+          Les cours reprennent à partir du 15 septembre {{ currentYear }}
         </p>
 
         <!-- End, signature -->
@@ -385,7 +414,7 @@ const nextYear = new Date().getFullYear() + 1;
         </div>
 
         <div
-          class="py-1 mt-8 text-xs font-semibold text-center bg-orange-500 text-stone-50"
+          class="py-0.5 mt-4 text-[10px] leading-[14px] font-semibold text-center bg-orange-500 text-stone-50"
         >
           <p>Ecole de danse Etincelle, Association Loi 1901 n°W932007295</p>
           <p>n°siret : 84066826300014 - APE : 8552Z</p>

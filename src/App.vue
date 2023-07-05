@@ -28,9 +28,7 @@ const handleNextStep = () => {
     class="flex flex-col items-center justify-center min-h-screen gap-4 p-4 font-medium font-quicksand text-stone-700"
   >
     <header>
-      <h1 class="m-auto font-bold text-7xl lg:w-2/3">
-        École de Danse Étincelle
-      </h1>
+      <h1 class="font-bold text-7xl lg:w-2/3">École de Danse Etincelle</h1>
     </header>
     <main class="w-full mt-16 lg:w-2/3">
       <div class="flex flex-col items-start justify-start gap-8">
@@ -55,7 +53,7 @@ const handleNextStep = () => {
         >
           <!-- Initial -->
           <div v-if="store.formStep === FormStep.Initial">
-            <div class="text-xl leading-relaxed">
+            <div class="w-full text-xl leading-relaxed">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
               debitis, quidem explicabo quod pariatur consequatur ex porro
               sapiente qui nihil, autem dolorum nemo aut unde in sed

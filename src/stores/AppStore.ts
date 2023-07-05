@@ -1,6 +1,11 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { FormStep, Classes, PaymentType } from "../definitions/app.d";
+import {
+  FormStep,
+  Classes,
+  PaymentType,
+  MedicalCertificate,
+} from "../definitions/app.d";
 import type { FormValues } from "../definitions/app.d";
 import { submitForm } from "@formkit/core";
 
@@ -46,8 +51,8 @@ export const useAppStore = defineStore("app", () => {
     },
     {
       id: Classes.Concours13,
-      label: "Concours - de 13 ans",
-      details: "+ 9 ans",
+      label: "Concours -13 ans",
+      details: "2 cours / semaine obligatoires",
       day: "Samedi",
       hours: "11h00 - 13h00",
       room: "Salle 4",
@@ -63,22 +68,22 @@ export const useAppStore = defineStore("app", () => {
       price: 220,
     },
     {
-      id: Classes.Avances,
-      label: "Avancés",
-      details: "Bon niveau technique exigé",
+      id: Classes.Concours1318,
+      label: "Concours 13-18 ans",
+      details: "2 cours / semaine obligatoires",
       day: "Mardi",
       hours: "20h00 - 21h30",
       room: "Salle 5",
-      price: 250,
+      price: 270,
     },
     {
-      id: Classes.Concours1318,
-      label: "Concours 13 - 18 ans",
-      details: "De 13 à 18 ans",
+      id: Classes.Avances,
+      label: "Avancés",
+      details: "Bon niveau technique exigé",
       day: "Vendredi",
       hours: "19h45 - 21h45",
       room: "Salle 5",
-      price: 270,
+      price: 250,
     },
     {
       id: Classes.AtelierChore,
@@ -90,11 +95,13 @@ export const useAppStore = defineStore("app", () => {
       price: 250,
     },
   ]);
-  const checkedClasses = ref<Classes[]>([Classes.Ados1, Classes.Concours13]);
+  const checkedClasses = ref<Classes[]>(
+    import.meta.env.PROD ? [] : [Classes.Ados1, Classes.Concours13]
+  );
 
   // Form State
   const formStep = ref<FormStep>(
-    import.meta.env.PROD ? FormStep.Initial : FormStep.Invoice
+    import.meta.env.PROD ? FormStep.Initial : FormStep.Classes
   );
   const slideDirection = ref<"prev" | "next">("next");
   const isAnimating = ref(false);
@@ -111,6 +118,7 @@ export const useAppStore = defineStore("app", () => {
     zipcode: import.meta.env.PROD ? "" : "93160",
     city: import.meta.env.PROD ? "" : "Noisy le Grand",
   });
+  const arePicturesRightsChecked = ref(false);
   const areRulesChecked = ref(false);
 
   const handleFormStep = ({
@@ -147,13 +155,13 @@ export const useAppStore = defineStore("app", () => {
       return submitForm("informations");
 
     if (
-      // If we are on the rules step, check if rules checkbox agreement is checked
-      (formStep.value === FormStep.Rules && !areRulesChecked.value) ||
+      // If we are on the rules step, check if rules and rights checkbox agreement is checked and medicalOption is selected
+      (formStep.value === FormStep.Rules &&
+        !areRulesChecked.value &&
+        !arePicturesRightsChecked.value &&
+        !medicalCertificate.value) ||
       // If we are on the classes step, check if at least one class is checked
-      (formStep.value === FormStep.Classes && !checkedClasses.value.length) ||
-      // If we are on the informations step, check if informations form is valid
-      (formStep.value === FormStep.Informations &&
-        !isInformationFormValid.value)
+      (formStep.value === FormStep.Classes && !checkedClasses.value.length)
     )
       return true;
     return false;
@@ -165,9 +173,7 @@ export const useAppStore = defineStore("app", () => {
       .reduce((acc, item) => acc + item.price, 0)
   );
   const costumeTotal = computed(
-    () =>
-      checkedClasses.value.filter((item) => item !== Classes.AtelierChore)
-        .length * COSTUME_BUDGET
+    () => checkedClasses.value.length * COSTUME_BUDGET
   );
   const multiClassesDiscount = computed(() =>
     checkedClasses.value.length > 1
@@ -215,6 +221,9 @@ export const useAppStore = defineStore("app", () => {
     };
   });
 
+  // Rules
+  const medicalCertificate = ref<MedicalCertificate | undefined>(undefined);
+
   return {
     classesItems,
     checkedClasses,
@@ -231,9 +240,11 @@ export const useAppStore = defineStore("app", () => {
     isInformationFormValid,
     formValues,
     locationDiscount,
+    arePicturesRightsChecked,
     areRulesChecked,
     isNextButtonDisabled,
     paymentType,
     payments,
+    medicalCertificate,
   };
 });

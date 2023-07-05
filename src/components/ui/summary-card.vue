@@ -3,6 +3,7 @@ export interface SummaryCardProps {
   title: string;
   number: number;
   helperText?: string;
+  helperBold?: boolean;
   secondNumber?: number;
   checked?: boolean;
   withEuros?: boolean;
@@ -11,6 +12,8 @@ export interface SummaryCardProps {
 }
 
 const props = defineProps<SummaryCardProps>();
+
+console.log(props);
 </script>
 
 <template>
@@ -41,7 +44,10 @@ const props = defineProps<SummaryCardProps>();
         <span v-show="props.withEuros">€</span>
       </div>
     </div>
-    <p class="px-4 mt-2 italic font-normal text-stone-600/80">
+    <p
+      class="px-4 mt-2 italic font-bold text-stone-600/80"
+      :class="props.helperBold ? 'font-bold' : 'font-normal'"
+    >
       {{ props.helperText }}
     </p>
   </div>

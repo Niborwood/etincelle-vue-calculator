@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { SummaryCard, TitleForm } from "../ui";
 import { useAppStore } from "@/stores/AppStore";
-import { Classes } from "@/definitions/app.d";
 
 const store = useAppStore();
 </script>
@@ -12,10 +11,11 @@ const store = useAppStore();
     <h3 class="mb-4 text-4xl font-bold">Cours choisis</h3>
     <div class="flex flex-row flex-wrap gap-2">
       <div
-        class="px-4 py-2 font-semibold rounded-full bg-stone-200 text-stone-400/60"
+        class="px-4 py-2 font-semibold rounded-full"
         :class="
-          store.checkedClasses.includes(classItem.id) &&
-          'bg-orange-600/80 text-stone-50 font-semibold'
+          store.checkedClasses.includes(classItem.id)
+            ? 'bg-orange-600/80 text-stone-50 font-semibold'
+            : 'bg-stone-200 text-stone-400/60'
         "
         v-for="classItem in store.classesItems"
         :key="classItem.id"
@@ -50,15 +50,7 @@ const store = useAppStore();
         title="Budget costume"
         :number="store.costumeTotal"
         with-euros
-        :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${
-          !store.checkedClasses.includes(Classes.AtelierChore)
-            ? store.checkedClasses.length
-            : store.checkedClasses.length - 1
-        } x 30 €. ${
-          store.checkedClasses.includes(Classes.AtelierChore)
-            ? 'Le cours atelier chorégraphique ne possède pas de budget costume intégré.'
-            : ''
-        }`"
+        :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${store.checkedClasses.length} x 30 €.`"
       />
       <summary-card
         title="Réduction Marne & Gondoire"
@@ -83,6 +75,7 @@ const store = useAppStore();
         :number="store.total"
         with-euros
         is-total
+        helper-bold
         helper-text="NB : pour les classes concours, le prix des inscriptions aux concours n’est pas inclus dans le total de l'année."
       />
     </div>

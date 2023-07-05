@@ -36,4 +36,9 @@ enum PaymentType {
   Three = "three_time",
 }
 
-export { FormStep, Classes, FormValues, PaymentType };
+enum MedicalCertificate {
+  Mail = "mail",
+  Handoff = "handoff",
+}
+
+export { FormStep, Classes, FormValues, PaymentType, MedicalCertificate };

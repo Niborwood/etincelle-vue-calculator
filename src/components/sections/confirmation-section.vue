@@ -6,7 +6,7 @@ import { FormStep, PaymentType } from "@/definitions/app.d";
 import { MapPin, Phone, Calendar, User, Edit } from "lucide-vue-next";
 
 const store = useAppStore();
-const nextYear = new Date().getFullYear() + 1;
+const currentYear = new Date().getFullYear();
 const handleEditInformations = () =>
   store.handleFormStep({ jumpTo: FormStep.Informations });
 </script>
@@ -123,7 +123,7 @@ const handleEditInformations = () =>
       <div v-if="store.paymentType === PaymentType.One">
         <p>en chèque, à régler en <strong>1</strong> fois :</p>
         <p class="pl-1 mt-2 text-lg">
-          Totalité le <strong>15/10/{{ nextYear }}</strong
+          Totalité le <strong>15/10/{{ currentYear }}</strong
           >.
         </p>
       </div>
@@ -134,15 +134,15 @@ const handleEditInformations = () =>
         <ul class="pl-1 mt-2 text-lg list-inside">
           <li>
             <strong>{{ store.payments.first }} €</strong> (1/3 total + adhésion)
-            le <strong>15/09/{{ nextYear }}</strong>
+            le <strong>15/09/{{ currentYear }}</strong>
           </li>
           <li>
             <strong>{{ store.payments.second }} €</strong> (1/3 total +
-            costumes) le <strong>01/11/{{ nextYear }}</strong>
+            costumes) le <strong>01/11/{{ currentYear }}</strong>
           </li>
           <li>
             <strong>{{ store.payments.third }} €</strong> (reste) le
-            <strong> 01/02/{{ nextYear + 1 }} </strong>
+            <strong> 01/02/{{ currentYear + 1 }} </strong>
           </li>
         </ul>
       </div>

@@ -14,7 +14,7 @@ const store = useAppStore();
     </p>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <div
       v-for="input in store.classesItems"
       :key="input.id"

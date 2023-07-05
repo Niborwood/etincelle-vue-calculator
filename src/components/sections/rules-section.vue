@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { TitleForm, RuleBlock } from "@/components/ui";
+import { MedicalCertificate } from "@/definitions/app.d";
 import { useAppStore } from "@/stores/AppStore";
 
 const store = useAppStore();
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -165,16 +167,34 @@ const store = useAppStore();
           concours et autres représentations sera faite uniquement dans le but
           de promouvoir l’association.
         </li>
-        <li>
-          Via ce règlement, vous autorisez l’Ecole de Danse Etincelle et son
-          professeur à utiliser l’image de votre enfant (ou la votre pour les
-          élèves majeurs) dans le but de faire connaître l’association.
-        </li>
       </ul>
     </rule-block>
     <FormKit
+      type="radio"
+      name="medical_certificate"
+      :options="[
+        {
+          label:
+            'Le certificat médical de non contre-indication à la pratique de la danse sera transmis par mail avec ce dossier',
+          value: MedicalCertificate.Mail,
+        },
+        {
+          label: `Le certificat médical de non contre-indication à la pratique de la danse sera remis en main propre avant le 01/10/${currentYear}`,
+          value: MedicalCertificate.Handoff,
+        },
+      ]"
+      v-model="store.medicalCertificate"
+    />
+    <FormKit
       type="checkbox"
-      label="J'accepte le règlement intérieur d'Etincelle"
+      label="Via ce règlement, vous autorisez l’Ecole de Danse Etincelle et son
+          professeur à utiliser l’image de votre enfant (ou la votre pour les
+          élèves majeurs) dans le but de faire connaître l’association."
+      v-model="store.arePicturesRightsChecked"
+    />
+    <FormKit
+      type="checkbox"
+      label="J'accepte le règlement intérieur d'Etincelle."
       help="En cochant cette case, l'élève et son représentant légal acceptent l'ensemble du règlement présenté ci-dessus et s'engagent à le respecter sans réserve pour toute l'année d'inscription."
       v-model="store.areRulesChecked"
     />
