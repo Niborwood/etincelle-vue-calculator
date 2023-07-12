@@ -133,8 +133,8 @@ const handleEditInformations = () =>
 
         <ul class="pl-1 mt-2 text-lg list-inside">
           <li>
-            <strong>{{ store.payments.first }} €</strong> (1/3 total + adhésion)
-            le <strong>15/09/{{ currentYear }}</strong>
+            <strong>{{ store.payments.first }} €</strong> (1/3 total) le
+            <strong>15/09/{{ currentYear }}</strong>
           </li>
           <li>
             <strong>{{ store.payments.second }} €</strong> (1/3 total +

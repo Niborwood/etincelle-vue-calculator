@@ -22,7 +22,7 @@ import { RuleBlock } from "@/components/ui";
         de la danse,
       </li>
       <li>
-        Le chèque d’adhésion à l’association, Le total de l'année (en un ou
+        Le chèque d’adhésion à l’association, le total de l'année (en un ou
         trois chèques) + frais costumes.
       </li>
     </ul>

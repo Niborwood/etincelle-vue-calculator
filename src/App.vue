@@ -53,18 +53,30 @@ const handleNextStep = () => {
         >
           <!-- Initial -->
           <div v-if="store.formStep === FormStep.Initial">
-            <div class="w-full text-xl leading-relaxed">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
-              debitis, quidem explicabo quod pariatur consequatur ex porro
-              sapiente qui nihil, autem dolorum nemo aut unde in sed
-              consequuntur corporis aperiam iusto asperiores aliquam accusantium
-              deleniti? Eaque minus quasi odit cumque consequuntur eligendi
-              totam cupiditate, temporibus doloribus id? Voluptatibus corrupti
-              explicabo tenetur animi vero debitis fugit totam, quis velit
-              assumenda excepturi nemo repudiandae illum, quo illo, magnam
-              molestiae placeat vel delectus sit culpa. Voluptatem iure
-              nesciunt, dolores illo autem labore distinctio dicta, nostrum
-              sapiente fuga at maiores eligendi a nisi earum?
+            <div class="w-full space-y-4 text-xl leading-relaxed">
+              <p>Bienvenue sur notre espace inscription !</p>
+              <p>
+                Vous allez compléter ici les informations nécessaires à votre
+                dossier pour l'année de danse 2023-2024 d'Etincelle.
+              </p>
+              <p>
+                Toute inscription doit être téléchargée, et renvoyée par mail
+                signée, avec notre règlement intérieur, signé également à
+                <strong>ecole@danse-etincelle.fr</strong>. Si vous avez déjà le
+                certificat médical vous pouvez nous le joindre avec, sinon il
+                sera à nous remettre en main propre.
+              </p>
+              <p>
+                Tout document non signé ne sera pas pris en compte, et toute
+                inscription doit être accompagnée du règlement de votre adhésion
+                sur HelloAsso (adhésion uniquement, le reste du règlement de
+                l'année se fera par chèque au forum des associations de
+                Bussy-saint-Georges).
+              </p>
+              <p>
+                Vous recevrez un mail de confirmation une fois tous les éléments
+                validés par notre équipe.
+              </p>
             </div>
           </div>
 

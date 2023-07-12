@@ -56,11 +56,21 @@ const isProd = import.meta.env.PROD;
     </div>
 
     <p>
-      <strong>Important :</strong> nous ne conservons aucune donnée lors de
-      l'utilisation de ce site internet. Si vous quittez cette page sans
-      télécharger le bulletin de pré-inscription, il faudra compléter à nouveau
-      la procédure d'inscription.
+      <strong>Dernière étape</strong>, valider l'adhésion nécessaire pour
+      l'assurance des élèves et la validation de leur place sur le site
+      d'HelloAsso d'Ecole de danse Etincelle (1 adhésion par élève inscrit).
     </p>
+
+    <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
+      <a
+        href="https://www.helloasso.com/associations/ecole-de-danse-etincelle/adhesions/adhesion-ecole-de-danse-etincelle-2023-2024"
+        class="underline"
+        target="_blank"
+      >
+        Régler l'adhésion directement sur HelloAsso
+      </a>
+    </div>
+
     <button
       type="button"
       class="flex items-center gap-2 p-4 text-xl font-semibold tracking-wider transition-shadow bg-orange-400 rounded-lg hover:shadow-md text-slate-100 hover:bg-orange-500"
@@ -68,6 +78,12 @@ const isProd = import.meta.env.PROD;
     >
       <Download /> Télécharger le bulletin de&nbsp;pré-inscription
     </button>
+    <p>
+      <strong>Important :</strong> nous ne conservons aucune donnée lors de
+      l'utilisation de ce site internet. Si vous quittez cette page sans
+      télécharger le bulletin de pré-inscription, il faudra compléter à nouveau
+      la procédure d'inscription.
+    </p>
 
     <div class="p-2 border" :class="isProd ? 'hidden' : ''">
       <!-- START OF INVOICE -->
@@ -250,7 +266,9 @@ const isProd = import.meta.env.PROD;
               <span class="pl-2 uppercase">{{ store.total }} €</span>
             </div>
             <div class="text-slate-600">
-              <span class="text-stone-900">Adhésion 35€ par élève :</span>
+              <span class="text-stone-900"
+                >Adhésion {{ store.membership }}€ par élève :</span
+              >
               <span class="pl-2 uppercase">1</span>
             </div>
             <div class="text-slate-600">
@@ -338,7 +356,7 @@ const isProd = import.meta.env.PROD;
                       ? `${store.payments.first} €`
                       : "..."
                   }}
-                  (1/3 total + adhésion)
+                  (1/3 total)
                 </div>
                 <div>Le 15/09/{{ currentYear }}</div>
               </div>

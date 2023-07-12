@@ -66,7 +66,7 @@ const store = useAppStore();
         is-discount
         :helper-text="`${
           store.checkedClasses.length > 1
-            ? `La réduction est appliquée au montant total des cours sans budget ni adhésion, soit 5% de ${store.totalOfClasses} €.`
+            ? `La réduction est appliquée au montant total des cours sans budget costume ni adhésion, soit 5% de ${store.totalOfClasses} €.`
             : 'La réduction n\'est pas applicable car vous n\'avez choisi qu\'un seul cours.'
         }`"
       />
@@ -76,7 +76,7 @@ const store = useAppStore();
         with-euros
         is-total
         helper-bold
-        helper-text="NB : pour les classes concours, le prix des inscriptions aux concours n’est pas inclus dans le total de l'année."
+        helper-text="NB : pour les classes concours, le prix des inscriptions aux concours n’est pas inclus dans le total de l'année. L'adhésion est à régler séparément sur HelloAsso (voir étape finale)."
       />
     </div>
   </div>

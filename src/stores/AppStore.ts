@@ -189,8 +189,7 @@ export const useAppStore = defineStore("app", () => {
   const total = computed(
     () =>
       totalOfClasses.value +
-      costumeTotal.value +
-      MEMBERSHIP -
+      costumeTotal.value -
       multiClassesDiscount.value -
       locationDiscount.value
   );
@@ -208,7 +207,7 @@ export const useAppStore = defineStore("app", () => {
   // Confirmation
   const paymentType = ref<PaymentType>(PaymentType.Three);
   const payments = computed(() => {
-    const first = Math.round(total.value / 3 + MEMBERSHIP);
+    const first = Math.round(total.value / 3);
     const second = Math.round(total.value / 3 + costumeTotal.value);
     const third = total.value - first - second;
 
@@ -244,5 +243,6 @@ export const useAppStore = defineStore("app", () => {
     paymentType,
     payments,
     medicalCertificate,
+    membership: MEMBERSHIP,
   };
 });
