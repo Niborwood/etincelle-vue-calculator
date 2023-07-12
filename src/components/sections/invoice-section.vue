@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TitleForm } from "@/components/ui";
+import { TitleForm, RulesBlock } from "@/components/ui";
 import { Download } from "lucide-vue-next";
 // @ts-ignore
 import VueHtml2pdf from "html2pdf.js";
@@ -7,6 +7,7 @@ import { useAppStore } from "@/stores/AppStore";
 import { DisplayCheck } from "@/components/ui";
 import { Classes, PaymentType } from "@/definitions/app.d";
 import logoTitle from "@/assets/logo-title.png";
+import { MedicalCertificate } from "@/definitions/app.d";
 
 const store = useAppStore();
 
@@ -35,11 +36,18 @@ const isProd = import.meta.env.PROD;
       <strong>Télécharger le bulletin de pré-inscription</strong> pour recevoir
       une version PDF des informations renseignées.
     </p>
-    <p>
+    <p v-if="store.medicalCertificate === MedicalCertificate.Mail">
       Il doit être accompagné du certificat médical de non contre-indication à
       la pratique de la danse du danseur.
     </p>
-    <p>Ce fichier est à envoyer par mail à l'adresse suivante :</p>
+    <p>
+      {{
+        store.medicalCertificate === MedicalCertificate.Mail
+          ? "Ces fichiers sont"
+          : "Ce fichier est"
+      }}
+      à envoyer par mail, avec signature, à l'adresse suivante :
+    </p>
 
     <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
       <a href="mailto:ecole@danse-etincelle.fr" class="underline">
@@ -370,7 +378,7 @@ const isProd = import.meta.env.PROD;
         </div>
 
         <!-- Medical -->
-        <div class="flex items-center gap-4 pl-4 m-auto mt-2 text-sm">
+        <!-- <div class="flex items-center gap-4 pl-4 m-auto mt-2 text-sm">
           <div class="flex items-start flex-1 gap-2">
             <display-check :evaluate="false" /> Le certificat médical de non
             contre-indication à la pratique de la danse a été transmis avec ce
@@ -382,12 +390,38 @@ const isProd = import.meta.env.PROD;
             contre-indication à la pratique de la danse sera remis en main
             propre avant le 01/10/{{ currentYear }}
           </div>
+        </div> -->
+
+        <div class="mt-2">
+          <div class="flex flex-row items-center gap-2">
+            <display-check :evaluate="true" /> J'accepte le règlement intérieur
+            d'Etincelle.
+          </div>
+          <div class="flex flex-row gap-2 items-top">
+            <div class="pt-1">
+              <display-check :evaluate="true" />
+            </div>
+            J'autorise Ecole de Danse Etincelle et son professeur à utiliser
+            l’image de votre enfant (ou la votre pour les élèves majeurs) dans
+            le but de faire connaître l’association.
+          </div>
+          <div class="flex flex-row gap-2 items-top">
+            <div class="pt-1">
+              <display-check :evaluate="true" />
+            </div>
+            {{
+              store.medicalCertificate === MedicalCertificate.Mail
+                ? "Je remets le certificat médical de non contre-indication à la pratique de la danse à l'association par mail à l'adresse ecole@danse-etincelle.fr"
+                : "Je remettrai le certificat médical de non contre-indication à la pratique de la danse à l'association avant le 01/10/" +
+                  currentYear
+            }}
+          </div>
         </div>
-        <p
+        <!-- <p
           class="text-sm italic text-center text-orange-500 underline underline-offset-2"
         >
           Les cours reprennent à partir du 15 septembre {{ currentYear }}
-        </p>
+        </p> -->
 
         <!-- End, signature -->
         <div class="grid grid-cols-3 mt-1">
@@ -423,6 +457,10 @@ const isProd = import.meta.env.PROD;
             Etincelle, Mairie de Bussy-saint-Georges, 1 place de la mairie -
             77600 Bussy-saint-Georges
           </p>
+        </div>
+
+        <div class="p-8 mt-4 space-y-4">
+          <rules-block />
         </div>
       </div>
     </div>

@@ -157,9 +157,7 @@ export const useAppStore = defineStore("app", () => {
     if (
       // If we are on the rules step, check if rules and rights checkbox agreement is checked and medicalOption is selected
       (formStep.value === FormStep.Rules &&
-        !areRulesChecked.value &&
-        !arePicturesRightsChecked.value &&
-        !medicalCertificate.value) ||
+        (!areRulesChecked.value || !arePicturesRightsChecked.value)) ||
       // If we are on the classes step, check if at least one class is checked
       (formStep.value === FormStep.Classes && !checkedClasses.value.length)
     )
@@ -222,7 +220,7 @@ export const useAppStore = defineStore("app", () => {
   });
 
   // Rules
-  const medicalCertificate = ref<MedicalCertificate | undefined>(undefined);
+  const medicalCertificate = ref<MedicalCertificate>(MedicalCertificate.Mail);
 
   return {
     classesItems,
