@@ -273,13 +273,9 @@ const isProd = import.meta.env.PROD;
             </div>
             <div class="text-slate-600">
               <span class="text-stone-900"
-                >Budget Costumes par cours, 25€ x
+                >Budget Costumes par cours, {{ store.costumeBudget }}€ x
                 <span class="pl-2 uppercase text-slate-600"
-                  >{{
-                    !store.checkedClasses.includes(Classes.AtelierChore)
-                      ? store.checkedClasses.length
-                      : store.checkedClasses.length - 1
-                  }}
+                  >{{ store.checkedClasses.length }}
                 </span>
                 =
                 <span class="pl-2 uppercase text-slate-600"

@@ -74,7 +74,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Mardi",
       hours: "20h00 - 21h30",
       room: "Salle 5",
-      price: 270,
+      price: 250,
     },
     {
       id: Classes.Avances,
@@ -83,7 +83,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Vendredi",
       hours: "19h45 - 21h45",
       room: "Salle 5",
-      price: 250,
+      price: 270,
     },
     {
       id: Classes.AtelierChore,
@@ -244,5 +244,6 @@ export const useAppStore = defineStore("app", () => {
     payments,
     medicalCertificate,
     membership: MEMBERSHIP,
+    costumeBudget: COSTUME_BUDGET,
   };
 });
