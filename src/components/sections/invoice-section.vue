@@ -263,7 +263,7 @@ const isProd = import.meta.env.PROD;
             </div>
             <div class="text-slate-600">
               <span class="text-stone-900">Total des cours pour l'année :</span>
-              <span class="pl-2 uppercase">{{ store.total }} €</span>
+              <span class="pl-2 uppercase">{{ store.totalOfClasses }} €</span>
             </div>
             <div class="text-slate-600">
               <span class="text-stone-900"
