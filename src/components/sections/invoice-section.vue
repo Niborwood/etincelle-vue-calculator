@@ -287,7 +287,7 @@ const isProd = import.meta.env.PROD;
           <div>
             <div class="flex items-center gap-2">
               <display-check :evaluate="!!store.locationDiscount" />
-              <span class="">-10% pour les habitants de Marne et Gondoire</span>
+              <span class="">-10€ pour les habitants de Marne et Gondoire</span>
             </div>
             <div class="flex items-center gap-2">
               <display-check :evaluate="store.checkedClasses.length > 1" />
