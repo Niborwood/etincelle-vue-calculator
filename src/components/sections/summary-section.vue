@@ -71,7 +71,7 @@ const store = useAppStore();
         }`"
       />
       <summary-card
-        title="Total de l'année"
+        title="Total de l'année (hors adhésion à régler sur Hello Asso)"
         :number="store.total"
         with-euros
         is-total
