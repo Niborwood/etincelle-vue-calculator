@@ -267,7 +267,8 @@ const isProd = import.meta.env.PROD;
             </div>
             <div class="text-slate-600">
               <span class="text-stone-900"
-                >Adhésion {{ store.membership }}€ par élève :</span
+                >Adhésion {{ store.membership }}€ par élève (réglé séparément)
+                :</span
               >
               <span class="pl-2 uppercase">1</span>
             </div>
@@ -383,7 +384,10 @@ const isProd = import.meta.env.PROD;
 
           <!-- Year total -->
           <div class="mt-2 font-bold text-center">
-            <div>Total de l'année : {{ store.total }} €</div>
+            <div>
+              Total de l'année (hors adhésion à régler sur Hello Asso) :
+              {{ store.total }} €
+            </div>
             <div class="text-xs font-normal">
               NB : pour les classes concours, le prix des inscriptions aux
               concours n’est pas inclus dans le total de l'année.
