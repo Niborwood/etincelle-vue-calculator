@@ -18,7 +18,7 @@ const store = useAppStore();
     <div
       v-for="input in store.classesItems"
       :key="input.id"
-      class="flex flex-row-reverse p-2 transition-all border-2 cursor-pointer rounded-xl hover:shadow-md md:basis-1/2 md:grow-0"
+      class="p-2 transition-all border-2 cursor-pointer rounded-xl hover:shadow-md md:basis-1/2 md:grow-0"
       :class="
         store.checkedClasses.includes(input.id) &&
         'border-orange-300 bg-gradient-to-tr from-orange-200/90 to-orange-200'
@@ -32,23 +32,26 @@ const store = useAppStore();
         v-model="store.checkedClasses"
       />
 
-      <div v-if="store.checkedClasses.includes(input.id)">
-        <CheckCircle class="text-orange-500" />
-      </div>
-      <div v-else><Circle class="text-stone-900/50" /></div>
-
       <label
-        class="flex-1 block p-4 space-y-2 transition-all cursor-pointer select-none"
+        class="flex flex-row-reverse p-4 space-y-2 transition-all cursor-pointer select-none"
         :for="input.id"
       >
-        <div class="flex-1">
-          <h3 class="text-4xl font-bold">{{ input.label }}</h3>
-          <div class="text-lg">{{ input.price }} €</div>
+        <div class="pl-4">
+          <div v-if="store.checkedClasses.includes(input.id)">
+            <CheckCircle class="text-orange-500" />
+          </div>
+          <div v-else><Circle class="text-stone-900/50" /></div>
         </div>
-        <div class="text-lg">
-          <div>{{ input.details }}</div>
-          <div>{{ input.day }}, {{ input.hours }}</div>
-          <div class="text-stone-900/60">{{ input.room }}</div>
+        <div class="flex-1">
+          <div>
+            <h3 class="text-4xl font-bold">{{ input.label }}</h3>
+            <div class="text-lg">{{ input.price }} €</div>
+          </div>
+          <div class="text-lg">
+            <div>{{ input.details }}</div>
+            <div>{{ input.day }}, {{ input.hours }}</div>
+            <div class="text-stone-900/60">{{ input.room }}</div>
+          </div>
         </div>
       </label>
     </div>

@@ -88,7 +88,7 @@ export const useAppStore = defineStore("app", () => {
     {
       id: Classes.AtelierChore,
       label: "Atelier chorégraphique",
-      details: "Solo, duo, trio",
+      details: "Solo, duo, trio. 2 cours / semaine obligatoires",
       hours: "13h45 - 15h15",
       day: "Samedi",
       room: "Salle 3",
