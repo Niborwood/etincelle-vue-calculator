@@ -63,7 +63,7 @@ const isProd = import.meta.env.PROD;
 
     <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
       <a
-        href="https://www.helloasso.com/associations/ecole-de-danse-etincelle/adhesions/adhesion-ecole-de-danse-etincelle-2023-2024"
+        href="https://www.helloasso.com/associations/ecole-de-danse-etincelle/adhesions/adhesion-ecole-de-danse-etincelle-2024-2025"
         class="underline"
         target="_blank"
       >
@@ -267,8 +267,10 @@ const isProd = import.meta.env.PROD;
             </div>
             <div class="text-slate-600">
               <span class="text-stone-900"
-                >Adhésion {{ store.membership }}€ par élève (réglé séparément)
-                :</span
+                >Adhésion
+                {{ store.locationDiscount > 0 ? "tarif réduit" : "" }}
+                {{ store.membership - store.locationDiscount }}€ par élève
+                (réglé séparément) :</span
               >
               <span class="pl-2 uppercase">1</span>
             </div>
@@ -286,10 +288,10 @@ const isProd = import.meta.env.PROD;
             </div>
           </div>
           <div>
-            <div class="flex items-center gap-2">
+            <!-- <div class="flex items-center gap-2">
               <display-check :evaluate="!!store.locationDiscount" />
               <span class="">-10€ pour les habitants de Marne et Gondoire</span>
-            </div>
+            </div> -->
             <div class="flex items-center gap-2">
               <display-check :evaluate="store.checkedClasses.length > 1" />
               <span class=""
@@ -385,8 +387,12 @@ const isProd = import.meta.env.PROD;
           <!-- Year total -->
           <div class="mt-2 font-bold text-center">
             <div>
-              Total de l'année (hors adhésion à régler sur Hello Asso) :
+              Total de l'année (hors adhésion) :
               {{ store.total }} €
+            </div>
+            <div class="font-normal text-xs">
+              Cours + adhésion à régler via Hello Asso =
+              {{ store.total + store.membership - store.locationDiscount }} €
             </div>
             <div class="text-xs font-normal">
               NB : pour les classes concours, le prix des inscriptions aux

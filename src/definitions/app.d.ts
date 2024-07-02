@@ -14,7 +14,7 @@ enum Classes {
   Concours13 = "concours-13",
   Ados1 = "ados-1",
   Avances = "avances",
-  Concours1318 = "concours-13-18",
+  CoursTechnique = "cours-technique",
   AtelierChore = "atelier-chore",
 }
 

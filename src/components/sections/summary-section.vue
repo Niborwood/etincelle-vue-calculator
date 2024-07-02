@@ -40,25 +40,25 @@ const store = useAppStore();
         :number="store.totalOfClasses"
         with-euros
       />
-      <summary-card
+      <!-- <summary-card
         title="Adhésion par élève"
         :number="35"
         with-euros
         helper-text="L'adhésion permet à l'élève d'être assuré et de participer aux activités de l'association."
-      />
+      /> -->
       <summary-card
         title="Budget costume"
         :number="store.costumeTotal"
         with-euros
         :helper-text="`Le total associe le budget fixe costume par cours (30 €) au nombre de cours choisis, soit ${store.checkedClasses.length} x 30 €.`"
       />
-      <summary-card
+      <!-- <summary-card
         title="Réduction Marne & Gondoire"
         :number="store.locationDiscount"
         with-euros
         is-discount
         helper-text="La liste des communes éligibles est disponible sur le site de la Marne et Gondoire."
-      />
+      /> -->
       <summary-card
         title="Réduction plusieurs cours"
         :number="store.multiClassesDiscount"
@@ -77,6 +77,17 @@ const store = useAppStore();
         is-total
         helper-bold
         helper-text="NB : pour les classes concours, le prix des inscriptions aux concours n’est pas inclus dans le total de l'année. L'adhésion est à régler séparément sur HelloAsso (voir étape finale)."
+      />
+      <summary-card
+        :title="`Adhésion par élève ${
+          store.locationDiscount > 0
+            ? '(-' + store.locationDiscount + '€ de réduction Marne & Gondoire)'
+            : ''
+        }`"
+        :number="store.membership - store.locationDiscount"
+        with-euros
+        is-wide
+        helper-text="L'adhésion permet à l'élève d'être assuré.e et de participer aux activités de l'association. Elle est à régler directement sur HelloAsso (voir étape finale)."
       />
     </div>
   </div>

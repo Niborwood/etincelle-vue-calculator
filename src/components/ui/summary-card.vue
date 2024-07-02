@@ -9,15 +9,14 @@ export interface SummaryCardProps {
   withEuros?: boolean;
   isDiscount?: boolean;
   isTotal?: boolean;
+  isWide?: boolean;
 }
 
 const props = defineProps<SummaryCardProps>();
-
-console.log(props);
 </script>
 
 <template>
-  <div :class="props.isTotal && 'sm:col-span-2'">
+  <div :class="(props.isTotal || props.isWide) && 'sm:col-span-2'">
     <div
       class="flex flex-col justify-between p-8 text-xl border-4 rounded-xl"
       :class="{

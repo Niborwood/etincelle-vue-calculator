@@ -57,7 +57,7 @@ const handleNextStep = () => {
               <p>Bienvenue sur notre espace inscription !</p>
               <p>
                 Vous allez compléter ici les informations nécessaires à votre
-                dossier pour l'année de danse 2023-2024 d'Etincelle.
+                dossier pour l'année de danse 2024-2025 d'Etincelle.
               </p>
               <p>
                 Toute inscription doit être téléchargée, et renvoyée par mail

@@ -36,7 +36,7 @@ export const useAppStore = defineStore("app", () => {
       label: "Enfants 1",
       details: "+ 4 ans",
       day: "Samedi",
-      hours: "13h00 - 13h45",
+      hours: "11h30 - 12h15",
       room: "Salle 4",
       price: 220,
     },
@@ -51,16 +51,16 @@ export const useAppStore = defineStore("app", () => {
     },
     {
       id: Classes.Concours13,
-      label: "Concours -13 ans",
+      label: "Concours 12-18ans",
       details: "2 cours / semaine obligatoires",
       day: "Samedi",
-      hours: "11h00 - 13h00",
+      hours: "12h15 - 13h45",
       room: "Salle 4",
       price: 250,
     },
     {
       id: Classes.Ados1,
-      label: "Ados 1",
+      label: "Ados",
       details: "+ 12 ans",
       day: "Vendredi",
       hours: "18h30 - 19h45",
@@ -68,8 +68,8 @@ export const useAppStore = defineStore("app", () => {
       price: 220,
     },
     {
-      id: Classes.Concours1318,
-      label: "Concours 13-18 ans",
+      id: Classes.CoursTechnique,
+      label: "Cours Technique",
       details: "2 cours / semaine obligatoires",
       day: "Mardi",
       hours: "20h00 - 21h30",
@@ -187,11 +187,7 @@ export const useAppStore = defineStore("app", () => {
   );
 
   const total = computed(
-    () =>
-      totalOfClasses.value +
-      costumeTotal.value -
-      multiClassesDiscount.value -
-      locationDiscount.value
+    () => totalOfClasses.value + costumeTotal.value - multiClassesDiscount.value
   );
 
   // Validation
