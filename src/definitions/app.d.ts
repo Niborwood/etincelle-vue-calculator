@@ -34,6 +34,7 @@ type FormValues = {
 enum PaymentType {
   One = "one_time",
   Three = "three_time",
+  Other = "other",
 }
 
 enum MedicalCertificate {

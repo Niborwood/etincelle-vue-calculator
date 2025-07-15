@@ -38,7 +38,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Samedi",
       hours: "11h30 - 12h15",
       room: "Salle 4",
-      price: 220,
+      price: 230,
     },
     {
       id: Classes.Enfants2,
@@ -47,16 +47,16 @@ export const useAppStore = defineStore("app", () => {
       day: "Samedi",
       hours: "10h15 - 11h30",
       room: "Salle 4",
-      price: 220,
+      price: 230,
     },
     {
       id: Classes.Concours13,
       label: "Concours 12-18ans",
       details: "2 cours / semaine obligatoires",
       day: "Samedi",
-      hours: "12h15 - 13h45",
-      room: "Salle 4",
-      price: 250,
+      hours: "13h45 - 15h15",
+      room: "Salle 3",
+      price: 265,
     },
     {
       id: Classes.Ados1,
@@ -65,7 +65,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Vendredi",
       hours: "18h30 - 19h45",
       room: "Salle 5",
-      price: 220,
+      price: 235,
     },
     {
       id: Classes.CoursTechnique,
@@ -74,7 +74,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Mardi",
       hours: "20h00 - 21h30",
       room: "Salle 5",
-      price: 250,
+      price: 265,
     },
     {
       id: Classes.Avances,
@@ -83,16 +83,16 @@ export const useAppStore = defineStore("app", () => {
       day: "Vendredi",
       hours: "19h45 - 21h45",
       room: "Salle 5",
-      price: 270,
+      price: 285,
     },
     {
       id: Classes.AtelierChore,
       label: "Atelier chorégraphique",
       details: "Solo, duo, trio. 2 cours / semaine obligatoires",
-      hours: "13h45 - 15h15",
+      hours: "12h15 - 13h45",
       day: "Samedi",
-      room: "Salle 3",
-      price: 250,
+      room: "Salle 4",
+      price: 265,
     },
   ]);
   const checkedClasses = ref<Classes[]>(

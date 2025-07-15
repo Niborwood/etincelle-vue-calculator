@@ -207,9 +207,11 @@ const isProd = import.meta.env.PROD;
             </p>
             <table class="w-full text-xs table-fixed">
               <tr
-                v-for="classItem in store.classesItems.filter((ci) =>
-                  [Classes.Concours13, Classes.AtelierChore].includes(ci.id)
-                )"
+                v-for="classItem in store.classesItems
+                  .filter((ci) =>
+                    [Classes.Concours13, Classes.AtelierChore].includes(ci.id)
+                  )
+                  .sort((a, b) => a.day.localeCompare(b.day))"
                 :key="classItem.id"
                 class="text-stone-600"
                 :class="

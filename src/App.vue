@@ -57,14 +57,18 @@ const handleNextStep = () => {
               <p>Bienvenue sur notre espace inscription !</p>
               <p>
                 Vous allez compléter ici les informations nécessaires à votre
-                dossier pour l'année de danse 2024-2025 d'Etincelle.
+                dossier pour l'année de danse 2025-2026 d'Etincelle.
               </p>
               <p>
-                Toute inscription doit être téléchargée, et renvoyée par mail
-                signée, avec notre règlement intérieur, signé également à
-                <strong>ecole@danse-etincelle.fr</strong>. Si vous avez déjà le
-                certificat médical vous pouvez nous le joindre avec, sinon il
-                sera à nous remettre en main propre.
+                Pour que votre pré-inscription soit valide, elle doit
+                téléchargée et renvoyée par vos soins être renvoyée par mail et
+                signée à
+                <strong>ecole@danse-etincelle.fr</strong> accompagnée de notre
+                règlement intérieur et du droit à l'image. Si vous avez déjà
+                <u
+                  >le certificat médical vous pouvez nous le joindre avec, sinon
+                  il sera à nous remettre en main propre en septembre</u
+                >.
               </p>
               <p>
                 Tout document non signé ne sera pas pris en compte, et toute
