@@ -112,6 +112,10 @@ const handleEditInformations = () =>
             label: 'Règlement en trois fois',
             value: PaymentType.Three,
           },
+          {
+            label: 'Je souhaite régler différemment',
+            value: PaymentType.Other,
+          },
         ]"
         v-model="store.paymentType"
       />
@@ -128,7 +132,14 @@ const handleEditInformations = () =>
         </p>
       </div>
 
-      <div v-else>
+      <div v-if="store.paymentType === PaymentType.Other">
+        <p>
+          + de mensualités, ou règlement autre que par chèque : frais de dossier
+          de 10€.
+        </p>
+      </div>
+
+      <div v-if="store.paymentType === PaymentType.Three">
         <p>en chèque, à régler en <strong>3</strong> fois :</p>
 
         <ul class="pl-1 mt-2 text-lg list-inside">
