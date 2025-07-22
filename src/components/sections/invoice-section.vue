@@ -386,6 +386,23 @@ const isProd = import.meta.env.PROD;
             </div>
           </div>
 
+          <!-- Other -->
+          <div
+            class="grid items-start grid-cols-2 px-2"
+            :class="
+              store.paymentType === PaymentType.Other
+                ? 'opacity-100'
+                : 'opacity-30'
+            "
+          >
+            <div class="flex gap-2">
+              <display-check
+                :evaluate="store.paymentType === PaymentType.Other"
+              />
+              Paiement différent : nous contacter (+ 10€)
+            </div>
+          </div>
+
           <!-- Year total -->
           <div class="mt-2 font-bold text-center">
             <div>

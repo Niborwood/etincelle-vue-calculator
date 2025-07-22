@@ -187,7 +187,11 @@ export const useAppStore = defineStore("app", () => {
   );
 
   const total = computed(
-    () => totalOfClasses.value + costumeTotal.value - multiClassesDiscount.value
+    () =>
+      totalOfClasses.value +
+      costumeTotal.value -
+      multiClassesDiscount.value +
+      (paymentType.value === PaymentType.Other ? 10 : 0)
   );
 
   // Validation

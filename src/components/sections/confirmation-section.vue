@@ -135,7 +135,7 @@ const handleEditInformations = () =>
       <div v-if="store.paymentType === PaymentType.Other">
         <p>
           + de mensualités, ou règlement autre que par chèque : frais de dossier
-          de 10€.
+          de 10€ inclus dans le total ci-dessus.
         </p>
       </div>
 
