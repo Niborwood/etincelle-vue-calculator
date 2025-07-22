@@ -63,7 +63,7 @@ const isProd = import.meta.env.PROD;
 
     <div class="p-8 font-bold bg-stone-200/80 rounded-xl">
       <a
-        href="https://www.helloasso.com/associations/ecole-de-danse-etincelle/adhesions/adhesion-ecole-de-danse-etincelle-2024-2025"
+        href="https://www.helloasso.com/associations/ecole-de-danse-etincelle/adhesions/adhesion-ecole-de-danse-etincelle-2025-2026"
         class="underline"
         target="_blank"
       >

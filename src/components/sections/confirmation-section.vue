@@ -157,6 +157,10 @@ const handleEditInformations = () =>
           </li>
         </ul>
       </div>
+      <div class="mt-4 text-xl">
+        + <span class="font-bold">{{ store.membership }} € d'adhésion</span> à
+        régler sur Hello Asso ce jour.
+      </div>
     </div>
   </div>
 </template>
