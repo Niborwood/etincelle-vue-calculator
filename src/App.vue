@@ -61,8 +61,7 @@ const handleNextStep = () => {
               </p>
               <p>
                 Pour que votre pré-inscription soit valide, elle doit
-                téléchargée et renvoyée par vos soins être renvoyée par mail et
-                signée à
+                téléchargée et renvoyée par mail signée à
                 <strong>ecole@danse-etincelle.fr</strong> accompagnée de notre
                 règlement intérieur et du droit à l'image. Si vous avez déjà
                 <u
