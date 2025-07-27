@@ -47,7 +47,7 @@ export const useAppStore = defineStore("app", () => {
       day: "Samedi",
       hours: "10h15 - 11h30",
       room: "Salle 4",
-      price: 230,
+      price: 235,
     },
     {
       id: Classes.Concours13,
